@@ -1,0 +1,47 @@
+<section class="relative flex min-h-[90vh] items-center overflow-hidden bg-ink">
+  <div class="bg-grid absolute inset-0"></div>
+  <div class="absolute top-20 left-10 size-72 rounded-full bg-orange-500/10 blur-3xl"></div>
+  <div class="absolute right-10 bottom-20 size-96 rounded-full bg-yellow-500/5 blur-3xl"></div>
+  <div
+    class="absolute top-1/2 left-1/2 size-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/5 blur-3xl"
+  ></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <div class="section-label mb-8">
+        <span class="relative flex size-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-500 opacity-75"></span>
+          <span class="relative inline-flex size-2 rounded-full bg-orange-500"></span>
+        </span>
+        <span class="text-sm font-medium text-neutral-300">مرحباً بك في {{ siteName() }}</span>
+      </div>
+
+      <h1 class="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
+        اكتشف <span class="gradient-text">فن</span>
+        <br />
+        التصوير الفوتوغرافي
+      </h1>
+
+      <p class="mx-auto mb-10 max-w-2xl text-xl leading-relaxed text-neutral-400 md:text-2xl">
+        انغمس في أسرار المحترفين ونصائح عملية لتطوير مهاراتك في التصوير.
+      </p>
+
+      <div class="mb-16 flex flex-col justify-center gap-4 sm:flex-row">
+        <a routerLink="/blog" class="btn-primary group gap-2">
+          <span>استكشف المقالات</span>
+          <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i>
+        </a>
+        <a routerLink="/about" class="btn-secondary gap-2">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>اعرف المزيد</span>
+        </a>
+      </div>
+
+      <div class="mx-auto grid max-w-3xl grid-cols-2 gap-4 md:grid-cols-4">
+        @for (stat of stats; track stat.label) {
+          <app-stat-card [stat]="stat" />
+        }
+      </div>
+    </div>
+  </div>
+</section>

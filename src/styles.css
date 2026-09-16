@@ -1,0 +1,77 @@
+@import 'tailwindcss';
+/* Icons: imported into the base layer so Tailwind utilities always win over Font Awesome's defaults. */
+@import '@fortawesome/fontawesome-free/css/all.min.css' layer(base);
+
+/* Design tokens */
+@theme {
+  --font-sans: 'Tajawal', system-ui, -apple-system, sans-serif;
+
+  --color-ink: #0a0a0a;
+  --color-surface: #111111;
+  --color-card: #161616;
+  --color-elevated: #1a1a1a;
+  --color-line: #262626;
+  --color-line-strong: #333333;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out 1s infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+}
+
+/* Reusable building blocks, defined as Tailwind utilities */
+@utility btn-primary {
+  @apply inline-flex cursor-pointer items-center justify-center rounded-full bg-linear-135 from-orange-500 to-orange-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5;
+}
+
+@utility btn-secondary {
+  @apply inline-flex cursor-pointer items-center justify-center rounded-full border border-line-strong bg-transparent px-8 py-4 font-semibold text-white transition-all duration-300 hover:border-orange-500 hover:bg-orange-500/10 hover:text-orange-500;
+}
+
+@utility card {
+  @apply overflow-hidden rounded-3xl border border-line bg-card transition-all duration-500 hover:-translate-y-1 hover:border-line-strong;
+}
+
+@utility glass-card {
+  @apply rounded-3xl border border-line bg-card/80 backdrop-blur-xl;
+}
+
+@utility section-label {
+  @apply inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-2 text-sm font-medium text-orange-500;
+
+  &::before {
+    content: '';
+    @apply size-1.5 animate-pulse rounded-full bg-orange-500;
+  }
+}
+
+@utility section-title {
+  @apply text-4xl leading-tight font-bold text-white md:text-5xl lg:text-6xl;
+}
+
+@utility section-subtitle {
+  @apply mt-4 text-lg leading-relaxed text-neutral-400;
+}
+
+@utility gradient-text {
+  @apply bg-linear-135 from-orange-500 to-amber-400 bg-clip-text text-transparent;
+}
+
+@utility input-dark {
+  @apply w-full rounded-xl border border-line bg-card px-5 py-4 text-white outline-none placeholder:text-neutral-500 transition-all duration-300 focus:border-orange-500 focus:ring-3 focus:ring-orange-500/10;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(rgb(38 38 38 / 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(38 38 38 / 0.5) 1px, transparent 1px);
+  background-size: 60px 60px;
+}

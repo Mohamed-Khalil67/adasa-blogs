@@ -1,0 +1,52 @@
+<div class="min-h-screen bg-ink">
+  <app-page-hero
+    label="مدونتنا"
+    icon="fa-book-open"
+    title="استكشف"
+    highlight="مقالاتنا"
+    subtitle="اكتشف الدروس والرؤى وأفضل الممارسات للتطوير الحديث"
+  />
+
+  <!-- Sticky toolbar -->
+  <div class="sticky top-20 z-40 border-b border-line bg-ink/90 backdrop-blur-xl">
+    <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+        <app-search-box class="block w-full md:w-80" [value]="search()" (valueChange)="onSearchChange($event)" />
+        <app-category-filter
+          [categories]="categories"
+          [selected]="activeCategory()"
+          (selectedChange)="onCategoryChange($event)"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div #resultsTop class="mx-auto max-w-7xl scroll-mt-[146px] px-4 py-12 sm:px-6 lg:px-8">
+    <app-results-bar
+      [count]="filteredPosts().length"
+      [hasFilters]="hasFilters()"
+      [layout]="layout()"
+      (layoutChange)="layout.set($event)"
+      (clear)="resetFilters()"
+    />
+
+    @if (visiblePosts().length) {
+      <div [class]="layout() === 'grid' ? 'grid gap-8 md:grid-cols-2 lg:grid-cols-3' : 'flex flex-col gap-6'">
+        @for (post of visiblePosts(); track post.id) {
+          <app-post-card [post]="post" [layout]="layout()" />
+        }
+      </div>
+
+      @if (totalPages() > 1) {
+        <app-pagination [current]="currentPage()" [total]="totalPages()" (pageChange)="onPageChange($event)" />
+      }
+    } @else {
+      <app-empty-state title="لا توجد مقالات" message="حاول تعديل البحث أو الفلتر للعثور على ما تبحث عنه.">
+        <button type="button" class="btn-primary gap-2" (click)="resetFilters()">
+          <i class="fa-solid fa-rotate-left"></i>
+          إعادة تعيين الفلاتر
+        </button>
+      </app-empty-state>
+    }
+  </div>
+</div>

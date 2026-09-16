@@ -1,0 +1,57 @@
+<nav aria-label="التنقل بين الصفحات">
+  <div class="mt-12 flex items-center justify-center gap-2">
+    <button
+      type="button"
+      aria-label="الصفحة السابقة"
+      [disabled]="current() === 1"
+      (click)="goTo(current() - 1)"
+      class="rounded-xl border p-3 transition-all duration-300"
+      [class]="
+        current() === 1
+          ? 'cursor-not-allowed border-line bg-ink text-neutral-600'
+          : 'border-line bg-card text-white hover:border-orange-500/50 hover:bg-elevated'
+      "
+    >
+      <i class="fa-solid fa-chevron-right block size-5 leading-5"></i>
+    </button>
+
+    <div class="flex items-center gap-1">
+      @for (item of pages(); track $index) {
+        @if (item === 'gap') {
+          <span class="px-2 text-neutral-500">...</span>
+        } @else {
+          <button
+            type="button"
+            (click)="goTo(item)"
+            [attr.aria-current]="item === current() ? 'page' : null"
+            class="h-11 min-w-[44px] rounded-xl text-sm font-medium transition-all duration-300"
+            [class]="
+              item === current()
+                ? 'bg-linear-to-r from-orange-500 to-orange-600 text-white'
+                : 'border border-line bg-card text-neutral-400 hover:border-orange-500/50 hover:text-white'
+            "
+          >
+            {{ item }}
+          </button>
+        }
+      }
+    </div>
+
+    <button
+      type="button"
+      aria-label="الصفحة التالية"
+      [disabled]="current() === total()"
+      (click)="goTo(current() + 1)"
+      class="rounded-xl border p-3 transition-all duration-300"
+      [class]="
+        current() === total()
+          ? 'cursor-not-allowed border-line bg-ink text-neutral-600'
+          : 'border-line bg-card text-white hover:border-orange-500/50 hover:bg-elevated'
+      "
+    >
+      <i class="fa-solid fa-chevron-left block size-5 leading-5"></i>
+    </button>
+  </div>
+
+  <p class="mt-4 text-center text-sm text-neutral-500">صفحة {{ current() }} من {{ total() }}</p>
+</nav>

@@ -1,0 +1,25 @@
+<footer class="relative overflow-hidden border-t border-line bg-ink text-neutral-300">
+  <div class="absolute top-0 left-1/4 size-96 rounded-full bg-orange-500/5 blur-3xl"></div>
+  <div class="absolute right-1/4 bottom-0 size-96 rounded-full bg-yellow-500/5 blur-3xl"></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <app-footer-brand />
+
+      <app-footer-column title="استكشف">
+        <app-footer-links [links]="exploreLinks" />
+      </app-footer-column>
+
+      <app-footer-column title="التصنيفات">
+        <app-footer-links [links]="categoryLinks" />
+      </app-footer-column>
+
+      <app-footer-column title="ابقى على اطلاع">
+        <p class="mb-4 text-sm text-neutral-500">اشترك للحصول على أحدث المقالات والتحديثات.</p>
+        <app-newsletter-form [variant]="'compact'" buttonLabel="اشترك" />
+      </app-footer-column>
+    </div>
+  </div>
+
+  <app-footer-bottom />
+</footer>

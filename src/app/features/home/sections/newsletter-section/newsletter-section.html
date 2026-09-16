@@ -1,0 +1,43 @@
+<section class="relative overflow-hidden bg-ink py-24">
+  <div class="absolute top-0 left-1/2 h-[300px] w-[600px] -translate-x-1/2 rounded-full bg-orange-500/10 blur-3xl"></div>
+
+  <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="rounded-3xl border border-line bg-card p-8 text-center md:p-12 lg:p-16">
+      <div
+        class="mx-auto mb-6 flex size-16 items-center justify-center rounded-2xl bg-linear-to-br from-orange-500 to-orange-600"
+      >
+        <i class="fa-regular fa-envelope text-3xl text-white"></i>
+      </div>
+
+      <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl">
+        اشترك في <span class="gradient-text">نشرتنا الإخبارية</span>
+      </h2>
+      <p class="mx-auto mb-8 max-w-xl text-lg text-neutral-400">
+        احصل على نصائح التصوير الحصرية ودروس جديدة مباشرة في بريدك الإلكتروني
+      </p>
+
+      <app-newsletter-form />
+
+      <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-neutral-500">
+        <div class="flex items-center gap-4">
+          <div class="flex -space-x-2 space-x-reverse">
+            @for (avatar of avatars(); track avatar.name) {
+              <img
+                [ngSrc]="avatar.avatar"
+                [alt]="avatar.name"
+                width="32"
+                height="32"
+                class="rounded-full border-2 border-card object-cover"
+              />
+            }
+          </div>
+          <span>انضم لـ <span class="font-medium text-white">+10,000</span> مصور</span>
+        </div>
+        <span class="hidden text-line sm:inline">•</span>
+        <span>بدون إزعاج</span>
+        <span class="hidden text-line sm:inline">•</span>
+        <span>إلغاء الاشتراك في أي وقت</span>
+      </div>
+    </div>
+  </div>
+</section>
