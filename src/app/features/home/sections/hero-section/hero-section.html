@@ -13,7 +13,7 @@
           <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-500 opacity-75"></span>
           <span class="relative inline-flex size-2 rounded-full bg-orange-500"></span>
         </span>
-        <span class="text-sm font-medium text-neutral-300">مرحباً بك في {{ siteName() }}</span>
+        <span class="text-sm font-medium text-neutral-300">مرحباً بك في عدسة</span>
       </div>
 
       <h1 class="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
@@ -37,10 +37,28 @@
         </a>
       </div>
 
+      <!-- Stats -->
       <div class="mx-auto grid max-w-3xl grid-cols-2 gap-4 md:grid-cols-4">
-        @for (stat of stats; track stat.label) {
-          <app-stat-card [stat]="stat" />
-        }
+        <div class="glass-card p-4 transition-transform duration-300 hover:scale-105">
+          <i class="fa-solid fa-newspaper mb-1 text-2xl leading-none text-orange-500"></i>
+          <p class="gradient-text text-2xl font-bold md:text-3xl">+50</p>
+          <p class="text-sm text-neutral-500">مقالة</p>
+        </div>
+        <div class="glass-card p-4 transition-transform duration-300 hover:scale-105">
+          <i class="fa-solid fa-users mb-1 text-2xl leading-none text-orange-500"></i>
+          <p class="gradient-text text-2xl font-bold md:text-3xl">+10ألف</p>
+          <p class="text-sm text-neutral-500">قارئ</p>
+        </div>
+        <div class="glass-card p-4 transition-transform duration-300 hover:scale-105">
+          <i class="fa-solid fa-folder-open mb-1 text-2xl leading-none text-orange-500"></i>
+          <p class="gradient-text text-2xl font-bold md:text-3xl">4</p>
+          <p class="text-sm text-neutral-500">تصنيفات</p>
+        </div>
+        <div class="glass-card p-4 transition-transform duration-300 hover:scale-105">
+          <i class="fa-solid fa-pen-nib mb-1 text-2xl leading-none text-orange-500"></i>
+          <p class="gradient-text text-2xl font-bold md:text-3xl">6</p>
+          <p class="text-sm text-neutral-500">كاتب</p>
+        </div>
       </div>
     </div>
   </div>

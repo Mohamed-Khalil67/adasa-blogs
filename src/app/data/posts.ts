@@ -1,11 +1,21 @@
 import postsJson from './posts.json';
-import { Author, CategorySummary, ContentBlock, ParsedContent, Post } from './models';
-import { CATEGORIES } from './site';
+import { Author, Category, CategorySummary, ContentBlock, ParsedContent, Post } from './models';
 
 // Import this file only from lazy-loaded pages (or with a dynamic import), so the
 // article text stays out of the initial bundle.
 
 export const POSTS = postsJson as Post[];
+
+export const POSTS_PER_PAGE = 6;
+
+/** Used by the blog filter and the home categories (with counts). */
+export const CATEGORIES: Category[] = [
+  { name: 'إضاءة', icon: 'fa-sun' },
+  { name: 'بورتريه', icon: 'fa-user' },
+  { name: 'مناظر طبيعية', icon: 'fa-mountain-sun' },
+  { name: 'تقنيات', icon: 'fa-sliders' },
+  { name: 'معدات', icon: 'fa-sun' },
+];
 
 export const FEATURED_POSTS = POSTS.filter((post) => post.featured);
 export const LATEST_POSTS = POSTS.filter((post) => !post.featured).slice(0, 3);

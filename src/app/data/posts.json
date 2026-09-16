@@ -8,10 +8,10 @@
     "category": "إضاءة",
     "author": {
       "name": "سالم أحمد",
-      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-01.jpg",
       "role": "مصور محترف"
     },
-    "image": "https://images.unsplash.com/photo-1500835556837-99ac94a94552?w=800&h=400&fit=crop",
+    "image": "images/posts/mastering-golden-hour-photography.jpg",
     "date": "2026-01-15",
     "readTime": "8 دقائق للقراءة",
     "featured": true,
@@ -30,10 +30,10 @@
     "category": "بورتريه",
     "author": {
       "name": "محمد علي",
-      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-02.jpg",
       "role": "مصور بورتريه"
     },
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop",
+    "image": "images/posts/portrait-photography-secrets.jpg",
     "date": "2026-01-12",
     "readTime": "6 دقائق للقراءة",
     "featured": true,
@@ -52,10 +52,10 @@
     "category": "مناظر طبيعية",
     "author": {
       "name": "إبراهيم حسن",
-      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-03.jpg",
       "role": "مصور طبيعة"
     },
-    "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop",
+    "image": "images/posts/landscape-photography-guide.jpg",
     "date": "2026-01-10",
     "readTime": "10 دقائق للقراءة",
     "featured": true,
@@ -74,10 +74,10 @@
     "category": "تقنيات",
     "author": {
       "name": "داود خالد",
-      "avatar": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-04.jpg",
       "role": "مدرب تصوير"
     },
-    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&h=400&fit=crop",
+    "image": "images/posts/camera-settings-basics.jpg",
     "date": "2026-01-08",
     "readTime": "7 دقائق للقراءة",
     "featured": false,
@@ -96,10 +96,10 @@
     "category": "تقنيات",
     "author": {
       "name": "ليث محمود",
-      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-05.jpg",
       "role": "فنان بصري"
     },
-    "image": "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&h=400&fit=crop",
+    "image": "images/posts/photo-composition-rules.jpg",
     "date": "2026-01-05",
     "readTime": "9 دقائق للقراءة",
     "featured": false,
@@ -118,10 +118,10 @@
     "category": "معدات",
     "author": {
       "name": "جمال عبدالله",
-      "avatar": "https://images.unsplash.com/photo-1463453091185-61582044d556?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-06.jpg",
       "role": "مصور ومراجع تقني"
     },
-    "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=400&fit=crop",
+    "image": "images/posts/mobile-photography-tips.jpg",
     "date": "2026-01-03",
     "readTime": "8 دقائق للقراءة",
     "featured": false,
@@ -140,10 +140,10 @@
     "category": "إضاءة",
     "author": {
       "name": "خالد الفيصل",
-      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-07.jpg",
       "role": "مصور فلكي"
     },
-    "image": "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=400&fit=crop",
+    "image": "images/posts/night-photography-techniques.jpg",
     "date": "2026-01-01",
     "readTime": "11 دقائق للقراءة",
     "featured": false,
@@ -162,10 +162,10 @@
     "category": "بورتريه",
     "author": {
       "name": "نادر سعيد",
-      "avatar": "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-08.jpg",
       "role": "مصور شوارع"
     },
-    "image": "https://images.unsplash.com/photo-1517732306149-e8f829eb588a?w=800&h=400&fit=crop",
+    "image": "images/posts/street-photography-guide.jpg",
     "date": "2025-12-28",
     "readTime": "7 دقائق للقراءة",
     "featured": false,
@@ -184,10 +184,10 @@
     "category": "تقنيات",
     "author": {
       "name": "هاني الشمري",
-      "avatar": "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-09.jpg",
       "role": "مصور طعام"
     },
-    "image": "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&h=400&fit=crop",
+    "image": "images/posts/food-photography-basics.jpg",
     "date": "2025-12-25",
     "readTime": "8 دقائق للقراءة",
     "featured": false,
@@ -206,10 +206,10 @@
     "category": "مناظر طبيعية",
     "author": {
       "name": "عمر الراشد",
-      "avatar": "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-10.jpg",
       "role": "مصور حياة برية"
     },
-    "image": "https://images.unsplash.com/photo-1549366021-9f761d450615?w=800&h=400&fit=crop",
+    "image": "images/posts/wildlife-photography-tips.jpg",
     "date": "2025-12-22",
     "readTime": "10 دقائق للقراءة",
     "featured": false,
@@ -228,10 +228,10 @@
     "category": "تقنيات",
     "author": {
       "name": "فارس العلي",
-      "avatar": "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-11.jpg",
       "role": "فنان فوتوغرافي"
     },
-    "image": "https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=800&h=400&fit=crop",
+    "image": "images/posts/black-white-photography.jpg",
     "date": "2025-12-20",
     "readTime": "9 دقائق للقراءة",
     "featured": false,
@@ -250,10 +250,10 @@
     "category": "معدات",
     "author": {
       "name": "سامي الحربي",
-      "avatar": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-12.jpg",
       "role": "خبير تعديل صور"
     },
-    "image": "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=800&h=400&fit=crop",
+    "image": "images/posts/photo-editing-lightroom.jpg",
     "date": "2025-12-18",
     "readTime": "12 دقائق للقراءة",
     "featured": false,
@@ -272,10 +272,10 @@
     "category": "تقنيات",
     "author": {
       "name": "رامي الخطيب",
-      "avatar": "https://images.unsplash.com/photo-1548372290-8d01b6c8e78c?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-13.jpg",
       "role": "مصور ماكرو"
     },
-    "image": "https://images.unsplash.com/photo-1550159930-40066082a4fc?w=800&h=400&fit=crop",
+    "image": "images/posts/macro-photography-world.jpg",
     "date": "2025-12-15",
     "readTime": "10 دقائق للقراءة",
     "featured": false,
@@ -294,10 +294,10 @@
     "category": "إضاءة",
     "author": {
       "name": "باسم المصري",
-      "avatar": "https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-14.jpg",
       "role": "مصور فني"
     },
-    "image": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&h=400&fit=crop",
+    "image": "images/posts/long-exposure-photography.jpg",
     "date": "2025-12-12",
     "readTime": "8 دقائق للقراءة",
     "featured": false,
@@ -316,10 +316,10 @@
     "category": "بورتريه",
     "author": {
       "name": "منصور الزهراني",
-      "avatar": "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-15.jpg",
       "role": "مصور زفاف"
     },
-    "image": "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=400&fit=crop",
+    "image": "images/posts/wedding-photography-guide.jpg",
     "date": "2025-12-10",
     "readTime": "11 دقائق للقراءة",
     "featured": false,
@@ -338,10 +338,10 @@
     "category": "معدات",
     "author": {
       "name": "فيصل الدوسري",
-      "avatar": "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-16.jpg",
       "role": "مصور جوي"
     },
-    "image": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&h=400&fit=crop",
+    "image": "images/posts/drone-photography-basics.jpg",
     "date": "2025-12-08",
     "readTime": "9 دقائق للقراءة",
     "featured": false,
@@ -360,10 +360,10 @@
     "category": "تقنيات",
     "author": {
       "name": "لؤي الصالح",
-      "avatar": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-17.jpg",
       "role": "مصور تجاري"
     },
-    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&h=400&fit=crop",
+    "image": "images/posts/product-photography-essentials.jpg",
     "date": "2025-12-05",
     "readTime": "8 دقائق للقراءة",
     "featured": false,
@@ -382,10 +382,10 @@
     "category": "مناظر طبيعية",
     "author": {
       "name": "طارق النعيمي",
-      "avatar": "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-18.jpg",
       "role": "مصور معماري"
     },
-    "image": "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=400&fit=crop",
+    "image": "images/posts/architecture-photography.jpg",
     "date": "2025-12-02",
     "readTime": "9 دقائق للقراءة",
     "featured": false,
@@ -404,10 +404,10 @@
     "category": "بورتريه",
     "author": {
       "name": "أحمد الشهري",
-      "avatar": "https://images.unsplash.com/photo-1580518324671-c2f0833a3af3?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-19.jpg",
       "role": "مصور رياضي"
     },
-    "image": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&h=400&fit=crop",
+    "image": "images/posts/sports-action-photography.jpg",
     "date": "2025-11-28",
     "readTime": "10 دقائق للقراءة",
     "featured": false,
@@ -426,10 +426,10 @@
     "category": "إضاءة",
     "author": {
       "name": "ماجد القحطاني",
-      "avatar": "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-20.jpg",
       "role": "مصور استوديو"
     },
-    "image": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=800&h=400&fit=crop",
+    "image": "images/posts/flash-photography-basics.jpg",
     "date": "2025-11-25",
     "readTime": "8 دقائق للقراءة",
     "featured": false,
@@ -448,10 +448,10 @@
     "category": "مناظر طبيعية",
     "author": {
       "name": "ياسر العتيبي",
-      "avatar": "https://images.unsplash.com/photo-1590086782957-93c06ef21604?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-21.jpg",
       "role": "مصور رحالة"
     },
-    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=400&fit=crop",
+    "image": "images/posts/travel-photography-tips.jpg",
     "date": "2025-11-22",
     "readTime": "9 دقائق للقراءة",
     "featured": false,
@@ -470,10 +470,10 @@
     "category": "تقنيات",
     "author": {
       "name": "دحام الحسيني",
-      "avatar": "https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-22.jpg",
       "role": "فنان بصري"
     },
-    "image": "https://images.unsplash.com/photo-1502691876148-a84978e59af8?w=800&h=400&fit=crop",
+    "image": "images/posts/color-theory-photography.jpg",
     "date": "2025-11-18",
     "readTime": "7 دقائق للقراءة",
     "featured": false,
@@ -492,10 +492,10 @@
     "category": "بورتريه",
     "author": {
       "name": "نايف المطيري",
-      "avatar": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-23.jpg",
       "role": "مصور مواليد"
     },
-    "image": "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=800&h=400&fit=crop",
+    "image": "images/posts/newborn-baby-photography.jpg",
     "date": "2025-11-15",
     "readTime": "10 دقائق للقراءة",
     "featured": false,
@@ -514,10 +514,10 @@
     "category": "تقنيات",
     "author": {
       "name": "عبدالله الغامدي",
-      "avatar": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-24.jpg",
       "role": "مصور عقارات"
     },
-    "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=400&fit=crop",
+    "image": "images/posts/real-estate-photography.jpg",
     "date": "2025-11-12",
     "readTime": "8 دقائق للقراءة",
     "featured": false,
@@ -536,10 +536,10 @@
     "category": "معدات",
     "author": {
       "name": "كريم الفهد",
-      "avatar": "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-25.jpg",
       "role": "خبير تقني"
     },
-    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop",
+    "image": "images/posts/raw-vs-jpeg-explained.jpg",
     "date": "2025-11-08",
     "readTime": "6 دقائق للقراءة",
     "featured": false,
@@ -558,10 +558,10 @@
     "category": "بورتريه",
     "author": {
       "name": "سلطان الراجحي",
-      "avatar": "https://images.unsplash.com/photo-1557862921-37829c790f19?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-26.jpg",
       "role": "فنان تصوير"
     },
-    "image": "https://images.unsplash.com/photo-1554080353-a576cf803bda?w=800&h=400&fit=crop",
+    "image": "images/posts/self-portrait-photography.jpg",
     "date": "2025-11-05",
     "readTime": "7 دقائق للقراءة",
     "featured": false,
@@ -580,10 +580,10 @@
     "category": "معدات",
     "author": {
       "name": "فهد السبيعي",
-      "avatar": "https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-27.jpg",
       "role": "مراجع معدات"
     },
-    "image": "https://images.unsplash.com/photo-1617005082133-548c4dd27f35?w=800&h=400&fit=crop",
+    "image": "images/posts/lens-guide-beginners.jpg",
     "date": "2025-11-02",
     "readTime": "9 دقائق للقراءة",
     "featured": false,
@@ -602,10 +602,10 @@
     "category": "تقنيات",
     "author": {
       "name": "راشد الجاسر",
-      "avatar": "https://images.unsplash.com/photo-1545167622-3a6ac756afa4?w=100&h=100&fit=crop&crop=face",
+      "avatar": "images/authors/author-28.jpg",
       "role": "فنان بصري"
     },
-    "image": "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=800&h=400&fit=crop",
+    "image": "images/posts/minimalist-photography.jpg",
     "date": "2025-10-28",
     "readTime": "6 دقائق للقراءة",
     "featured": false,

@@ -1,34 +1,112 @@
 <div class="min-h-screen bg-ink">
-  <app-page-hero
-    label="مدونتنا"
-    icon="fa-book-open"
-    title="استكشف"
-    highlight="مقالاتنا"
-    subtitle="اكتشف الدروس والرؤى وأفضل الممارسات للتطوير الحديث"
-  />
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-20">
+    <div class="absolute inset-0 bg-ink"></div>
+    <div class="bg-grid absolute inset-0"></div>
+    <div class="absolute inset-0">
+      <div class="absolute top-0 left-1/4 size-96 rounded-full bg-orange-500/10 blur-3xl"></div>
+      <div class="absolute right-1/4 bottom-0 size-96 rounded-full bg-yellow-500/5 blur-3xl"></div>
+    </div>
 
-  <!-- Sticky toolbar -->
+    <div class="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+      <span class="section-label mb-6">
+        <i class="fa-solid fa-book-open"></i>
+        مدونتنا
+      </span>
+      <h1 class="mb-6 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+        استكشف <span class="gradient-text">مقالاتنا</span>
+      </h1>
+      <p class="mx-auto max-w-2xl text-xl text-neutral-400">اكتشف الدروس والرؤى وأفضل الممارسات للتطوير الحديث</p>
+    </div>
+  </section>
+
+  <!-- Sticky toolbar: search + category chips -->
   <div class="sticky top-20 z-40 border-b border-line bg-ink/90 backdrop-blur-xl">
     <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
       <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-        <app-search-box class="block w-full md:w-80" [value]="search()" (valueChange)="onSearchChange($event)" />
-        <app-category-filter
-          [categories]="categories"
-          [selected]="activeCategory()"
-          (selectedChange)="onCategoryChange($event)"
-        />
+        <div class="relative w-full md:w-80">
+          <label for="blog-search" class="sr-only">ابحث في المقالات</label>
+          <input
+            #searchInput
+            id="blog-search"
+            type="text"
+            autocomplete="off"
+            placeholder="ابحث في المقالات..."
+            class="input-dark py-3 pr-12"
+            [value]="search()"
+            (input)="onSearchChange(searchInput.value)"
+          />
+          <i
+            class="fa-solid fa-magnifying-glass pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-lg text-neutral-500"
+          ></i>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2" role="group" aria-label="تصفية حسب التصنيف">
+          <button
+            type="button"
+            [class]="!activeCategory() ? chipActive : chipIdle"
+            [attr.aria-pressed]="!activeCategory()"
+            (click)="selectCategory(null)"
+          >
+            جميع المقالات
+          </button>
+          @for (category of categories; track category.name) {
+            <button
+              type="button"
+              [class]="activeCategory() === category.name ? chipActive : chipIdle"
+              [attr.aria-pressed]="activeCategory() === category.name"
+              (click)="selectCategory(category.name)"
+            >
+              {{ category.name }}
+            </button>
+          }
+        </div>
       </div>
     </div>
   </div>
 
   <div #resultsTop class="mx-auto max-w-7xl scroll-mt-[146px] px-4 py-12 sm:px-6 lg:px-8">
-    <app-results-bar
-      [count]="filteredPosts().length"
-      [hasFilters]="hasFilters()"
-      [layout]="layout()"
-      (layoutChange)="layout.set($event)"
-      (clear)="resetFilters()"
-    />
+    <!-- Results bar -->
+    <div class="mb-8 flex items-center justify-between">
+      <p class="text-neutral-400" aria-live="polite">
+        عرض <span class="font-bold text-white">{{ filteredPosts().length }}</span>
+        {{ filteredPosts().length === 1 ? 'مقالة' : 'مقالات' }}
+      </p>
+      <div class="flex items-center gap-2">
+        <div class="flex items-center rounded-xl border border-line bg-card p-1" role="group" aria-label="طريقة العرض">
+          <button
+            type="button"
+            aria-label="عرض شبكي"
+            [attr.aria-pressed]="layout() === 'grid'"
+            (click)="layout.set('grid')"
+            class="cursor-pointer rounded-lg p-2 transition-all duration-300"
+            [class]="layout() === 'grid' ? 'bg-orange-500 text-white' : 'text-neutral-400 hover:text-white'"
+          >
+            <i class="fa-solid fa-table-cells-large block size-5 text-base leading-5"></i>
+          </button>
+          <button
+            type="button"
+            aria-label="عرض قائمة"
+            [attr.aria-pressed]="layout() === 'list'"
+            (click)="layout.set('list')"
+            class="cursor-pointer rounded-lg p-2 transition-all duration-300"
+            [class]="layout() === 'list' ? 'bg-orange-500 text-white' : 'text-neutral-400 hover:text-white'"
+          >
+            <i class="fa-solid fa-list block size-5 text-base leading-5"></i>
+          </button>
+        </div>
+        @if (hasFilters()) {
+          <button
+            type="button"
+            (click)="resetFilters()"
+            class="flex cursor-pointer items-center gap-1 text-sm text-neutral-500 transition-colors hover:text-orange-500"
+          >
+            <i class="fa-solid fa-xmark"></i>
+            مسح الفلاتر
+          </button>
+        }
+      </div>
+    </div>
 
     @if (visiblePosts().length) {
       <div [class]="layout() === 'grid' ? 'grid gap-8 md:grid-cols-2 lg:grid-cols-3' : 'flex flex-col gap-6'">
@@ -41,12 +119,20 @@
         <app-pagination [current]="currentPage()" [total]="totalPages()" (pageChange)="onPageChange($event)" />
       }
     } @else {
-      <app-empty-state title="لا توجد مقالات" message="حاول تعديل البحث أو الفلتر للعثور على ما تبحث عنه.">
+      <!-- Empty state -->
+      <div class="py-20 text-center">
+        <div
+          class="mx-auto mb-6 flex size-24 items-center justify-center rounded-full border border-line bg-card text-5xl text-neutral-500"
+        >
+          <i class="fa-regular fa-file-lines"></i>
+        </div>
+        <h3 class="mb-3 text-2xl font-bold text-white">لا توجد مقالات</h3>
+        <p class="mb-6 text-neutral-400">حاول تعديل البحث أو الفلتر للعثور على ما تبحث عنه.</p>
         <button type="button" class="btn-primary gap-2" (click)="resetFilters()">
           <i class="fa-solid fa-rotate-left"></i>
           إعادة تعيين الفلاتر
         </button>
-      </app-empty-state>
+      </div>
     }
   </div>
 </div>

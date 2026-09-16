@@ -4,22 +4,160 @@
 
   <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-      <app-footer-brand />
+      <!-- Brand -->
+      <div>
+        <a routerLink="/" class="group mb-6 flex items-center gap-3">
+          <div
+            class="flex size-11 items-center justify-center rounded-xl bg-linear-to-br from-orange-500 to-orange-600 transition-all duration-300 group-hover:scale-105"
+          >
+            <span class="text-xl font-bold text-white">ع</span>
+          </div>
+          <span class="text-xl font-bold text-white">عدسة</span>
+        </a>
+        <p class="mb-6 text-sm leading-relaxed text-neutral-500">
+          مدونة متخصصة في فن التصوير الفوتوغرافي، نشارك معكم أسرار المحترفين ونصائح عملية لتطوير مهاراتكم.
+        </p>
+        <div class="flex gap-2">
+          <a
+            href="https://twitter.com/adasah"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X (Twitter)"
+            class="flex size-10 items-center justify-center rounded-xl border border-line bg-card text-lg text-neutral-500 transition-all duration-300 hover:scale-110 hover:border-transparent hover:bg-linear-to-br hover:from-orange-500 hover:to-orange-600 hover:text-white"
+          >
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a
+            href="https://github.com/adasah"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            class="flex size-10 items-center justify-center rounded-xl border border-line bg-card text-lg text-neutral-500 transition-all duration-300 hover:scale-110 hover:border-transparent hover:bg-linear-to-br hover:from-orange-500 hover:to-orange-600 hover:text-white"
+          >
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a
+            href="https://linkedin.com/company/adasah"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            class="flex size-10 items-center justify-center rounded-xl border border-line bg-card text-lg text-neutral-500 transition-all duration-300 hover:scale-110 hover:border-transparent hover:bg-linear-to-br hover:from-orange-500 hover:to-orange-600 hover:text-white"
+          >
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a
+            href="https://youtube.com/@adasah"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+            class="flex size-10 items-center justify-center rounded-xl border border-line bg-card text-lg text-neutral-500 transition-all duration-300 hover:scale-110 hover:border-transparent hover:bg-linear-to-br hover:from-orange-500 hover:to-orange-600 hover:text-white"
+          >
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+        </div>
+      </div>
 
-      <app-footer-column title="استكشف">
-        <app-footer-links [links]="exploreLinks" />
-      </app-footer-column>
+      <!-- Explore -->
+      <div>
+        <h3 class="mb-6 flex items-center gap-2 font-semibold text-white">
+          <span class="h-0.5 w-8 rounded-full bg-linear-to-r from-orange-500 to-yellow-500"></span>
+          استكشف
+        </h3>
+        <ul class="space-y-4">
+          <li>
+            <a routerLink="/" class="group flex items-center gap-2 text-sm text-neutral-500 transition-colors duration-300 hover:text-orange-500">
+              <i class="fa-solid fa-chevron-left -mr-4 w-4 text-xs text-orange-500 opacity-0 transition-all duration-300 group-hover:mr-0 group-hover:opacity-100"></i>
+              الرئيسية
+            </a>
+          </li>
+          <li>
+            <a routerLink="/blog" class="group flex items-center gap-2 text-sm text-neutral-500 transition-colors duration-300 hover:text-orange-500">
+              <i class="fa-solid fa-chevron-left -mr-4 w-4 text-xs text-orange-500 opacity-0 transition-all duration-300 group-hover:mr-0 group-hover:opacity-100"></i>
+              المدونة
+            </a>
+          </li>
+          <li>
+            <a routerLink="/about" class="group flex items-center gap-2 text-sm text-neutral-500 transition-colors duration-300 hover:text-orange-500">
+              <i class="fa-solid fa-chevron-left -mr-4 w-4 text-xs text-orange-500 opacity-0 transition-all duration-300 group-hover:mr-0 group-hover:opacity-100"></i>
+              من نحن
+            </a>
+          </li>
+        </ul>
+      </div>
 
-      <app-footer-column title="التصنيفات">
-        <app-footer-links [links]="categoryLinks" />
-      </app-footer-column>
+      <!-- Categories -->
+      <div>
+        <h3 class="mb-6 flex items-center gap-2 font-semibold text-white">
+          <span class="h-0.5 w-8 rounded-full bg-linear-to-r from-orange-500 to-yellow-500"></span>
+          التصنيفات
+        </h3>
+        <ul class="space-y-4">
+          <li>
+            <a routerLink="/blog" [queryParams]="{ category: 'إضاءة' }" class="group flex items-center gap-2 text-sm text-neutral-500 transition-colors duration-300 hover:text-orange-500">
+              <i class="fa-solid fa-chevron-left -mr-4 w-4 text-xs text-orange-500 opacity-0 transition-all duration-300 group-hover:mr-0 group-hover:opacity-100"></i>
+              إضاءة
+            </a>
+          </li>
+          <li>
+            <a routerLink="/blog" [queryParams]="{ category: 'بورتريه' }" class="group flex items-center gap-2 text-sm text-neutral-500 transition-colors duration-300 hover:text-orange-500">
+              <i class="fa-solid fa-chevron-left -mr-4 w-4 text-xs text-orange-500 opacity-0 transition-all duration-300 group-hover:mr-0 group-hover:opacity-100"></i>
+              بورتريه
+            </a>
+          </li>
+          <li>
+            <a routerLink="/blog" [queryParams]="{ category: 'مناظر طبيعية' }" class="group flex items-center gap-2 text-sm text-neutral-500 transition-colors duration-300 hover:text-orange-500">
+              <i class="fa-solid fa-chevron-left -mr-4 w-4 text-xs text-orange-500 opacity-0 transition-all duration-300 group-hover:mr-0 group-hover:opacity-100"></i>
+              مناظر طبيعية
+            </a>
+          </li>
+          <li>
+            <a routerLink="/blog" [queryParams]="{ category: 'تقنيات' }" class="group flex items-center gap-2 text-sm text-neutral-500 transition-colors duration-300 hover:text-orange-500">
+              <i class="fa-solid fa-chevron-left -mr-4 w-4 text-xs text-orange-500 opacity-0 transition-all duration-300 group-hover:mr-0 group-hover:opacity-100"></i>
+              تقنيات
+            </a>
+          </li>
+        </ul>
+      </div>
 
-      <app-footer-column title="ابقى على اطلاع">
+      <!-- Newsletter (visual only, like the original) -->
+      <div>
+        <h3 class="mb-6 flex items-center gap-2 font-semibold text-white">
+          <span class="h-0.5 w-8 rounded-full bg-linear-to-r from-orange-500 to-yellow-500"></span>
+          ابقى على اطلاع
+        </h3>
         <p class="mb-4 text-sm text-neutral-500">اشترك للحصول على أحدث المقالات والتحديثات.</p>
-        <app-newsletter-form [variant]="'compact'" buttonLabel="اشترك" />
-      </app-footer-column>
+        <form class="space-y-3" (submit)="$event.preventDefault()">
+          <label class="sr-only" for="footer-email">البريد الإلكتروني</label>
+          <input
+            id="footer-email"
+            type="email"
+            placeholder="أدخل بريدك الإلكتروني"
+            class="w-full rounded-xl border border-line bg-card px-4 py-3 text-sm text-white placeholder-neutral-600 transition-all duration-300 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 focus:outline-none"
+          />
+          <button type="submit" class="btn-primary w-full text-sm">اشترك</button>
+        </form>
+      </div>
     </div>
   </div>
 
-  <app-footer-bottom />
+  <!-- Bottom bar -->
+  <div class="relative border-t border-line">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+        <p class="text-sm text-neutral-600">
+          © {{ year }} عدسة. صنع بكل
+          <i class="fa-solid fa-heart text-orange-500"></i>
+          جميع الحقوق محفوظة.
+        </p>
+        <div class="flex gap-6">
+          <a routerLink="/privacy" class="text-sm text-neutral-600 transition-colors duration-300 hover:text-orange-500">
+            سياسة الخصوصية
+          </a>
+          <a routerLink="/terms" class="text-sm text-neutral-600 transition-colors duration-300 hover:text-orange-500">
+            شروط الخدمة
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>

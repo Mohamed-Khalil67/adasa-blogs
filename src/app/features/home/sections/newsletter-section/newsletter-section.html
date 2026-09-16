@@ -16,14 +16,29 @@
         احصل على نصائح التصوير الحصرية ودروس جديدة مباشرة في بريدك الإلكتروني
       </p>
 
-      <app-newsletter-form />
+      <!-- Visual only, like the original: submitting does nothing -->
+      <form class="mx-auto mb-6 flex max-w-lg flex-col gap-3 sm:flex-row" (submit)="$event.preventDefault()">
+        <label class="sr-only" for="newsletter-email">البريد الإلكتروني</label>
+        <input
+          id="newsletter-email"
+          type="email"
+          placeholder="أدخل بريدك الإلكتروني"
+          class="flex-1 rounded-xl border border-line bg-ink px-5 py-4 text-white placeholder-neutral-500 transition-colors focus:border-orange-500/50 focus:outline-none"
+        />
+        <button
+          type="submit"
+          class="cursor-pointer rounded-xl bg-linear-to-r from-orange-500 to-orange-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:from-orange-600 hover:to-orange-700"
+        >
+          اشترك الآن
+        </button>
+      </form>
 
       <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-neutral-500">
         <div class="flex items-center gap-4">
           <div class="flex -space-x-2 space-x-reverse">
-            @for (avatar of avatars(); track avatar.name) {
+            @for (avatar of avatars; track avatar.name) {
               <img
-                [ngSrc]="avatar.avatar"
+                [src]="avatar.avatar"
                 [alt]="avatar.name"
                 width="32"
                 height="32"

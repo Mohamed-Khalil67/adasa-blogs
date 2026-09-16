@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -19,7 +19,7 @@ import { RouterLink } from '@angular/router';
         </p>
         <div class="flex flex-col justify-center gap-4 sm:flex-row">
           <a
-            [href]="'mailto:' + email()"
+            href="mailto:hello@adasah.com"
             class="inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-8 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-900"
           >
             <i class="fa-regular fa-envelope"></i>
@@ -37,6 +37,4 @@ import { RouterLink } from '@angular/router';
     </section>
   `,
 })
-export class ContactCta {
-  readonly email = input.required<string>();
-}
+export class ContactCta {}

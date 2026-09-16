@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { PRIVACY_POLICY } from '../../../data/legal';
-import { LegalDocument } from '../components/legal-document/legal-document';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-privacy',
-  imports: [LegalDocument],
-  template: `<app-legal-document [document]="policy" />`,
+  imports: [RouterLink],
+  templateUrl: './privacy.html',
 })
-export class Privacy {
-  protected readonly policy = PRIVACY_POLICY;
-}
+export class Privacy {}

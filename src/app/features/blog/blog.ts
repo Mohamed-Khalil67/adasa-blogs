@@ -1,19 +1,16 @@
-import { Component, ElementRef, computed, inject, input, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, afterRenderEffect, computed, inject, input, signal, viewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PostLayout } from '../../data/models';
-import { filterPosts, isCategory } from '../../data/posts';
-import { CATEGORIES, POSTS_PER_PAGE } from '../../data/site';
-import { EmptyState } from '../../shared/components/empty-state/empty-state';
-import { PageHero } from '../../shared/components/page-hero/page-hero';
-import { PostCard } from '../../shared/components/post-card/post-card';
+import { CATEGORIES, POSTS_PER_PAGE, filterPosts, isCategory } from '../../data/posts';
 import { Pagination } from '../../shared/components/pagination/pagination';
-import { CategoryFilter } from './components/category-filter/category-filter';
-import { ResultsBar } from './components/results-bar/results-bar';
-import { SearchBox } from './components/search-box/search-box';
+import { PostCard } from '../../shared/components/post-card/post-card';
+import { SearchFocusService } from '../../shared/services/search-focus.service';
+
+const CHIP = 'cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition-all duration-300';
 
 @Component({
   selector: 'app-blog',
-  imports: [PageHero, SearchBox, CategoryFilter, ResultsBar, PostCard, Pagination, EmptyState],
+  imports: [PostCard, Pagination],
   templateUrl: './blog.html',
 })
 export class Blog {
@@ -23,9 +20,14 @@ export class Blog {
 
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
-  private readonly resultsTop = viewChild<ElementRef<HTMLElement>>('resultsTop');
+  private readonly searchFocus = inject(SearchFocusService);
+  private readonly searchInput = viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
+  private readonly resultsTop = viewChild.required<ElementRef<HTMLElement>>('resultsTop');
 
   protected readonly categories = CATEGORIES;
+  protected readonly chipActive = `${CHIP} bg-linear-to-r from-orange-500 to-orange-600 text-white`;
+  protected readonly chipIdle = `${CHIP} border border-line bg-card text-neutral-400 hover:border-orange-500/30`;
+
   protected readonly search = signal('');
   protected readonly layout = signal<PostLayout>('grid');
 
@@ -53,8 +55,17 @@ export class Blog {
 
   protected readonly hasFilters = computed(() => !!this.activeCategory() || !!this.search().trim());
 
-  protected onCategoryChange(category: string | null): void {
-    this.updateQuery({ category, page: null });
+  constructor() {
+    // Focus the search box when the header search button asked for it.
+    afterRenderEffect(() => {
+      if (!this.searchFocus.pending()) return;
+      this.searchInput().nativeElement.focus();
+      this.searchFocus.consume();
+    });
+  }
+
+  protected selectCategory(category: string | null): void {
+    if (category !== this.activeCategory()) this.updateQuery({ category, page: null });
   }
 
   protected onSearchChange(term: string): void {
@@ -64,7 +75,7 @@ export class Blog {
 
   protected onPageChange(page: number): void {
     this.updateQuery({ page: page > 1 ? page : null });
-    this.resultsTop()?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    this.resultsTop().nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   protected resetFilters(): void {

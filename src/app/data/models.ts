@@ -1,7 +1,3 @@
-import { Params } from '@angular/router';
-
-// ---- Blog content ----
-
 export interface Author {
   name: string;
   avatar: string;
@@ -49,70 +45,4 @@ export interface TocItem {
 export interface ParsedContent {
   blocks: ContentBlock[];
   toc: TocItem[];
-}
-
-// ---- Site & UI ----
-
-export interface SiteInfo {
-  name: string;
-  tagline: string;
-  description: string;
-  email: string;
-}
-
-export interface NavLink {
-  label: string;
-  path: string;
-  queryParams?: Params;
-  exact?: boolean;
-}
-
-export interface SocialLink {
-  label: string;
-  icon: string;
-  url: string;
-}
-
-export interface Stat {
-  icon: string;
-  value: string;
-  label: string;
-}
-
-export interface Feature {
-  icon: string;
-  title: string;
-  description: string;
-}
-
-export interface BreadcrumbItem {
-  label?: string;
-  icon?: string;
-  link?: string;
-}
-
-// ---- Legal pages ----
-
-export interface LegalListItem {
-  /** Optional bold lead-in, e.g. "بيانات الهوية". */
-  label?: string;
-  text: string;
-}
-
-export interface LegalSection {
-  title: string;
-  paragraphs?: string[];
-  listIntro?: string;
-  list?: LegalListItem[];
-  /** Shows the site's contact email under the section. */
-  showEmail?: boolean;
-}
-
-export interface LegalDocument {
-  title: string;
-  icon: string;
-  updatedAt: string;
-  notice: { icon: string; title: string; text: string };
-  sections: LegalSection[];
-  closing: { text: string; linkLabel: string; link: string };
 }

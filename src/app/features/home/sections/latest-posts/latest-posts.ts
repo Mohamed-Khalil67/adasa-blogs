@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { Post } from '../../../../data/models';
+import { Component } from '@angular/core';
+import { LATEST_POSTS } from '../../../../data/posts';
 import { PostCard } from '../../../../shared/components/post-card/post-card';
 import { SectionHeading } from '../../../../shared/components/section-heading/section-heading';
 
@@ -17,7 +17,7 @@ import { SectionHeading } from '../../../../shared/components/section-heading/se
           linkLabel="عرض جميع المقالات"
         />
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          @for (post of posts(); track post.id) {
+          @for (post of posts; track post.id) {
             <app-post-card [post]="post" />
           }
         </div>
@@ -26,5 +26,5 @@ import { SectionHeading } from '../../../../shared/components/section-heading/se
   `,
 })
 export class LatestPosts {
-  readonly posts = input.required<readonly Post[]>();
+  protected readonly posts = LATEST_POSTS;
 }
