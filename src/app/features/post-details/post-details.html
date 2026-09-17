@@ -74,8 +74,8 @@
         </div>
 
         <!-- Body -->
-        @for (block of content().blocks; track $index) {
-          @if (block.type === 'heading') {
+        @for (block of blocks(); track $index) {
+          @if (block.id) {
             <h2
               [id]="block.id"
               class="mt-14 mb-6 flex scroll-mt-24 items-center gap-4 text-2xl font-bold text-white md:text-3xl"
@@ -178,7 +178,7 @@
       <!-- Sidebar -->
       <aside class="order-1 lg:order-2">
         <div class="space-y-6 lg:sticky lg:top-24">
-          @if (content().toc.length) {
+          @if (headings().length) {
             <div class="rounded-2xl border border-line bg-surface p-6">
               <div class="mb-5 flex items-center gap-3">
                 <div class="flex size-10 items-center justify-center rounded-xl border border-orange-500/30 bg-orange-500/10">
@@ -187,11 +187,11 @@
                 <h3 class="font-bold text-white">محتويات المقال</h3>
               </div>
               <nav aria-label="محتويات المقال" class="space-y-2">
-                @for (item of content().toc; track item.id; let i = $index) {
+                @for (heading of headings(); track heading.id; let i = $index) {
                   <!-- Scrolled manually: a plain "#id" href would resolve against <base href> and leave the page. -->
                   <a
-                    [href]="'#' + item.id"
-                    (click)="scrollToSection($event, item.id)"
+                    [href]="'#' + heading.id"
+                    (click)="scrollToHeading($event, heading.id)"
                     class="group flex items-center gap-3 rounded-xl p-3 text-neutral-400 transition-all duration-300 hover:bg-orange-500/5 hover:text-orange-500"
                   >
                     <span
@@ -199,7 +199,7 @@
                     >
                       {{ i + 1 }}
                     </span>
-                    <span class="text-sm">{{ item.title }}</span>
+                    <span class="text-sm">{{ heading.text }}</span>
                   </a>
                 }
               </nav>

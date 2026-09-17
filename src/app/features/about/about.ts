@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
-import { AboutHero } from './sections/about-hero/about-hero';
-import { ContactCta } from './sections/contact-cta/contact-cta';
-import { TeamSection } from './sections/team-section/team-section';
-import { ValuesSection } from './sections/values-section/values-section';
+import { RouterLink } from '@angular/router';
+import POSTS from '../../data/posts.json';
 
 @Component({
   selector: 'app-about',
-  imports: [AboutHero, ValuesSection, TeamSection, ContactCta],
-  template: `
-    <app-about-hero />
-    <app-values-section />
-    <app-team-section />
-    <app-contact-cta />
-  `,
+  imports: [RouterLink],
+  templateUrl: './about.html',
 })
-export class About {}
+export class About {
+  /** The site's writers, taken from the posts: unique by name, in order of first appearance. */
+  protected readonly authors = [...new Map(POSTS.map((post) => [post.author.name, post.author])).values()];
+}

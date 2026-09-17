@@ -1,9 +1,7 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Post } from '../../data/models';
-import { findPost, getRelatedPosts, parsePostContent } from '../../data/posts';
-import { ArDatePipe } from '../../shared/pipes/ar-date.pipe';
+import POSTS from '../../data/posts.json';
+import { ArDatePipe } from '../../shared/ar-date.pipe';
 
 @Component({
   selector: 'app-post-details',
@@ -14,14 +12,40 @@ export class PostDetails {
   /** Route param; the canMatch check in app.routes.ts guarantees the post exists. */
   readonly slug = input.required<string>();
 
-  private readonly document = inject(DOCUMENT);
+  protected readonly post = computed(() => POSTS.find((post) => post.slug === this.slug())!);
 
-  protected readonly post = computed(() => findPost(this.slug()) as Post);
-  protected readonly content = computed(() => parsePostContent(this.post().content));
-  protected readonly relatedPosts = computed(() => getRelatedPosts(this.post()));
+  /**
+   * The post body, split into paragraphs and "## " headings. Headings get an anchor
+   * id like the original site: section-0, section-1…
+   */
+  protected readonly blocks = computed(() => {
+    let headingIndex = 0;
+    return this.post()
+      .content.split('\n\n')
+      .map((chunk) => chunk.trim())
+      .filter(Boolean)
+      .map((text): { text: string; id?: string } =>
+        text.startsWith('## ') ? { text: text.slice(3), id: `section-${headingIndex++}` } : { text },
+      );
+  });
 
-  protected scrollToSection(event: MouseEvent, id: string): void {
+  /** The headings only, for the table of contents. */
+  protected readonly headings = computed(() =>
+    this.blocks().flatMap((block) => (block.id ? [{ id: block.id, text: block.text }] : [])),
+  );
+
+  /** Same category first, then topped up with other posts. */
+  protected readonly relatedPosts = computed(() => {
+    const post = this.post();
+    const others = POSTS.filter((other) => other.id !== post.id);
+    return [
+      ...others.filter((other) => other.category === post.category),
+      ...others.filter((other) => other.category !== post.category),
+    ].slice(0, 3);
+  });
+
+  protected scrollToHeading(event: Event, id: string): void {
     event.preventDefault();
-    this.document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }

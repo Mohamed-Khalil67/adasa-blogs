@@ -1,0 +1,332 @@
+<!-- Hero -->
+<section class="relative flex min-h-[90vh] items-center overflow-hidden bg-ink">
+  <div class="bg-grid absolute inset-0"></div>
+  <div class="absolute top-20 left-10 size-72 rounded-full bg-orange-500/10 blur-3xl"></div>
+  <div class="absolute right-10 bottom-20 size-96 rounded-full bg-yellow-500/5 blur-3xl"></div>
+  <div
+    class="absolute top-1/2 left-1/2 size-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/5 blur-3xl"
+  ></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <div class="section-label mb-8">
+        <span class="relative flex size-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-500 opacity-75"></span>
+          <span class="relative inline-flex size-2 rounded-full bg-orange-500"></span>
+        </span>
+        <span class="text-sm font-medium text-neutral-300">مرحباً بك في عدسة</span>
+      </div>
+
+      <h1 class="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
+        اكتشف <span class="gradient-text">فن</span>
+        <br />
+        التصوير الفوتوغرافي
+      </h1>
+
+      <p class="mx-auto mb-10 max-w-2xl text-xl leading-relaxed text-neutral-400 md:text-2xl">
+        انغمس في أسرار المحترفين ونصائح عملية لتطوير مهاراتك في التصوير.
+      </p>
+
+      <div class="mb-16 flex flex-col justify-center gap-4 sm:flex-row">
+        <a routerLink="/blog" class="btn-primary group gap-2">
+          <span>استكشف المقالات</span>
+          <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i>
+        </a>
+        <a routerLink="/about" class="btn-secondary gap-2">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>اعرف المزيد</span>
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="mx-auto grid max-w-3xl grid-cols-2 gap-4 md:grid-cols-4">
+        <div class="glass-card p-4 transition-transform duration-300 hover:scale-105">
+          <i class="fa-solid fa-newspaper mb-1 text-2xl leading-none text-orange-500"></i>
+          <p class="gradient-text text-2xl font-bold md:text-3xl">+50</p>
+          <p class="text-sm text-neutral-500">مقالة</p>
+        </div>
+        <div class="glass-card p-4 transition-transform duration-300 hover:scale-105">
+          <i class="fa-solid fa-users mb-1 text-2xl leading-none text-orange-500"></i>
+          <p class="gradient-text text-2xl font-bold md:text-3xl">+10ألف</p>
+          <p class="text-sm text-neutral-500">قارئ</p>
+        </div>
+        <div class="glass-card p-4 transition-transform duration-300 hover:scale-105">
+          <i class="fa-solid fa-folder-open mb-1 text-2xl leading-none text-orange-500"></i>
+          <p class="gradient-text text-2xl font-bold md:text-3xl">4</p>
+          <p class="text-sm text-neutral-500">تصنيفات</p>
+        </div>
+        <div class="glass-card p-4 transition-transform duration-300 hover:scale-105">
+          <i class="fa-solid fa-pen-nib mb-1 text-2xl leading-none text-orange-500"></i>
+          <p class="gradient-text text-2xl font-bold md:text-3xl">6</p>
+          <p class="text-sm text-neutral-500">كاتب</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured posts -->
+<section class="relative overflow-hidden bg-ink py-24">
+  <div class="absolute top-0 right-0 h-full w-1/3 bg-linear-to-l from-orange-500/5 to-transparent"></div>
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+      <div>
+        <span class="section-label mb-4">
+          <span class="relative flex size-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-500 opacity-75"></span>
+            <span class="relative inline-flex size-2 rounded-full bg-orange-500"></span>
+          </span>
+          مميز
+        </span>
+        <h2 class="section-title">مقالات مختارة</h2>
+        <p class="section-subtitle max-w-lg">محتوى منتقى لبدء رحلة تعلمك</p>
+      </div>
+
+      <a
+        routerLink="/blog"
+        class="group inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-orange-500 to-orange-600 px-5 py-2.5 font-medium text-white transition-all duration-300 hover:-translate-y-0.5"
+      >
+        عرض الكل
+        <i class="fa-solid fa-arrow-left text-sm transition-transform group-hover:-translate-x-1"></i>
+      </a>
+    </div>
+
+    <div class="space-y-8">
+      @for (post of featuredPosts; track post.id) {
+        <article
+          class="group relative overflow-hidden rounded-3xl border border-line bg-card transition-all duration-500 hover:border-orange-500/30"
+        >
+          <a [routerLink]="['/blog', post.slug]" class="block">
+            <div class="grid md:grid-cols-2">
+              <!-- Image (first grid column, so on the right in RTL) -->
+              <div class="relative h-72 overflow-hidden md:h-100">
+                <img
+                  [src]="post.image"
+                  [alt]="post.title"
+                  class="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                <div
+                  class="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                ></div>
+                <div class="absolute top-4 right-4">
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-full bg-linear-to-r from-orange-500 to-yellow-500 px-3 py-1.5 text-xs font-semibold text-white"
+                  >
+                    <i class="fa-solid fa-star text-[11px]"></i>
+                    مميز
+                  </span>
+                </div>
+              </div>
+
+              <!-- Content -->
+              <div class="flex flex-col justify-center bg-card p-8 md:p-10">
+                <div class="mb-4 flex items-center gap-3">
+                  <span
+                    class="inline-block rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 text-xs font-semibold text-orange-500"
+                  >
+                    {{ post.category }}
+                  </span>
+                  <span class="flex items-center gap-1 text-sm text-neutral-500">
+                    <i class="fa-regular fa-clock"></i>
+                    {{ post.readTime }}
+                  </span>
+                </div>
+
+                <h2
+                  class="mb-4 text-2xl leading-tight font-bold text-white transition-colors duration-300 group-hover:text-orange-500 md:text-3xl"
+                >
+                  {{ post.title }}
+                </h2>
+                <p class="mb-6 line-clamp-3 leading-relaxed text-neutral-400">{{ post.excerpt }}</p>
+
+                <div class="mt-auto flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="relative shrink-0">
+                      <img
+                        [src]="post.author.avatar"
+                        [alt]="post.author.name"
+                        width="48"
+                        height="48"
+                        class="rounded-full object-cover shadow-md ring-2 ring-line"
+                      />
+                      <span
+                        class="absolute -bottom-1 -left-1 size-4 rounded-full border-2 border-card bg-orange-500"
+                      ></span>
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold text-white">{{ post.author.name }}</p>
+                      <p class="text-xs text-neutral-500">{{ post.date | arDate }}</p>
+                    </div>
+                  </div>
+                  <span
+                    class="inline-flex items-center gap-2 text-sm font-semibold text-orange-500 transition-all duration-300 group-hover:gap-3"
+                  >
+                    اقرأ المقال
+                    <i class="fa-solid fa-arrow-left"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="relative border-y border-line bg-surface py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12 text-center">
+      <span class="section-label mb-4">
+        <span class="relative flex size-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-500 opacity-75"></span>
+          <span class="relative inline-flex size-2 rounded-full bg-orange-500"></span>
+        </span>
+        التصنيفات
+      </span>
+      <h2 class="section-title">استكشف حسب الموضوع</h2>
+      <p class="section-subtitle mx-auto max-w-lg">اعثر على محتوى مصمم حسب اهتماماتك</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+      @for (category of categories; track category.name) {
+        <a
+          routerLink="/blog"
+          [queryParams]="{ category: category.name }"
+          class="group relative block overflow-hidden rounded-2xl border border-line bg-card p-6 transition-all duration-500 hover:-translate-y-1 hover:border-orange-500/30"
+        >
+          <div
+            class="absolute inset-0 bg-linear-to-br from-orange-500 to-yellow-500 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          ></div>
+
+          <div class="relative z-10">
+            <div
+              class="mb-4 flex size-12 items-center justify-center rounded-xl border border-orange-500/20 bg-orange-500/10 transition-colors duration-300 group-hover:border-transparent group-hover:bg-white/20"
+            >
+              <i
+                class="fa-solid {{ category.icon }} text-xl text-orange-500 transition-colors duration-300 group-hover:text-white"
+              ></i>
+            </div>
+            <h3 class="mb-1 text-lg font-bold text-white">{{ category.name }}</h3>
+            <p class="text-sm text-neutral-500 transition-colors duration-300 group-hover:text-white/80">
+              {{ category.count }} مقالة
+            </p>
+
+            <div
+              class="absolute top-6 left-6 flex size-8 items-center justify-center rounded-full bg-line opacity-0 transition-all duration-300 group-hover:bg-white/20 group-hover:opacity-100"
+            >
+              <i class="fa-solid fa-arrow-left text-xs text-white"></i>
+            </div>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Latest posts -->
+<section class="relative overflow-hidden bg-ink py-24">
+  <div class="absolute bottom-0 left-0 h-full w-1/3 bg-linear-to-r from-orange-500/5 to-transparent"></div>
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+      <div>
+        <span class="section-label mb-4">
+          <span class="relative flex size-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-500 opacity-75"></span>
+            <span class="relative inline-flex size-2 rounded-full bg-orange-500"></span>
+          </span>
+          الأحدث
+        </span>
+        <h2 class="section-title">أحدث المقالات</h2>
+        <p class="section-subtitle max-w-lg">محتوى جديد طازج من المطبعة</p>
+      </div>
+
+      <a
+        routerLink="/blog"
+        class="group inline-flex items-center gap-2 font-semibold text-orange-500 transition-colors hover:text-orange-400"
+      >
+        عرض جميع المقالات
+        <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i>
+      </a>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      @for (post of latestPosts; track post.id) {
+        <app-post-card [post]="post" />
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter (visual only, like the original: submitting does nothing) -->
+<section class="relative overflow-hidden bg-ink py-24">
+  <div class="absolute top-0 left-1/2 h-[300px] w-[600px] -translate-x-1/2 rounded-full bg-orange-500/10 blur-3xl"></div>
+
+  <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="rounded-3xl border border-line bg-card p-8 text-center md:p-12 lg:p-16">
+      <div
+        class="mx-auto mb-6 flex size-16 items-center justify-center rounded-2xl bg-linear-to-br from-orange-500 to-orange-600"
+      >
+        <i class="fa-regular fa-envelope text-3xl text-white"></i>
+      </div>
+
+      <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl">
+        اشترك في <span class="gradient-text">نشرتنا الإخبارية</span>
+      </h2>
+      <p class="mx-auto mb-8 max-w-xl text-lg text-neutral-400">
+        احصل على نصائح التصوير الحصرية ودروس جديدة مباشرة في بريدك الإلكتروني
+      </p>
+
+      <form class="mx-auto mb-6 flex max-w-lg flex-col gap-3 sm:flex-row" (submit)="$event.preventDefault()">
+        <label class="sr-only" for="newsletter-email">البريد الإلكتروني</label>
+        <input
+          id="newsletter-email"
+          type="email"
+          placeholder="أدخل بريدك الإلكتروني"
+          class="flex-1 rounded-xl border border-line bg-ink px-5 py-4 text-white placeholder-neutral-500 transition-colors focus:border-orange-500/50 focus:outline-none"
+        />
+        <button
+          type="submit"
+          class="cursor-pointer rounded-xl bg-linear-to-r from-orange-500 to-orange-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:from-orange-600 hover:to-orange-700"
+        >
+          اشترك الآن
+        </button>
+      </form>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-neutral-500">
+        <div class="flex items-center gap-4">
+          <!-- Decorative faces next to the subscriber count -->
+          <div class="flex -space-x-2 space-x-reverse">
+            <img
+              src="images/authors/author-01.jpg"
+              alt="سالم أحمد"
+              width="32"
+              height="32"
+              class="rounded-full border-2 border-card object-cover"
+            />
+            <img
+              src="images/authors/author-02.jpg"
+              alt="محمد علي"
+              width="32"
+              height="32"
+              class="rounded-full border-2 border-card object-cover"
+            />
+            <img
+              src="images/authors/author-03.jpg"
+              alt="إبراهيم حسن"
+              width="32"
+              height="32"
+              class="rounded-full border-2 border-card object-cover"
+            />
+          </div>
+          <span>انضم لـ <span class="font-medium text-white">+10,000</span> مصور</span>
+        </div>
+        <span class="hidden text-line sm:inline">•</span>
+        <span>بدون إزعاج</span>
+        <span class="hidden text-line sm:inline">•</span>
+        <span>إلغاء الاشتراك في أي وقت</span>
+      </div>
+    </div>
+  </div>
+</section>

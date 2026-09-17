@@ -1,16 +1,14 @@
-import { Component, ElementRef, afterRenderEffect, computed, inject, input, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, computed, inject, input, signal, viewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { PostLayout } from '../../data/models';
-import { CATEGORIES, POSTS_PER_PAGE, filterPosts, isCategory } from '../../data/posts';
-import { Pagination } from '../../shared/components/pagination/pagination';
-import { PostCard } from '../../shared/components/post-card/post-card';
-import { SearchFocusService } from '../../shared/services/search-focus.service';
+import POSTS from '../../data/posts.json';
+import { PostCard } from '../../shared/post-card/post-card';
 
+const POSTS_PER_PAGE = 6;
 const CHIP = 'cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition-all duration-300';
 
 @Component({
   selector: 'app-blog',
-  imports: [PostCard, Pagination],
+  imports: [PostCard],
   templateUrl: './blog.html',
 })
 export class Blog {
@@ -20,24 +18,24 @@ export class Blog {
 
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
-  private readonly searchFocus = inject(SearchFocusService);
-  private readonly searchInput = viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
   private readonly resultsTop = viewChild.required<ElementRef<HTMLElement>>('resultsTop');
 
-  protected readonly categories = CATEGORIES;
   protected readonly chipActive = `${CHIP} bg-linear-to-r from-orange-500 to-orange-600 text-white`;
   protected readonly chipIdle = `${CHIP} border border-line bg-card text-neutral-400 hover:border-orange-500/30`;
 
   protected readonly search = signal('');
-  protected readonly layout = signal<PostLayout>('grid');
+  protected readonly layout = signal<'grid' | 'list'>('grid');
 
-  /** An unknown category in the URL falls back to "all posts". */
-  protected readonly activeCategory = computed(() => {
+  /** Search matches the title and excerpt, like the original site. */
+  protected readonly filteredPosts = computed(() => {
     const category = this.category();
-    return isCategory(category) ? category! : null;
+    const term = this.search().trim().toLowerCase();
+    return POSTS.filter(
+      (post) =>
+        (!category || post.category === category) &&
+        (!term || post.title.toLowerCase().includes(term) || post.excerpt.toLowerCase().includes(term)),
+    );
   });
-
-  protected readonly filteredPosts = computed(() => filterPosts(this.activeCategory(), this.search()));
 
   protected readonly totalPages = computed(() =>
     Math.max(1, Math.ceil(this.filteredPosts().length / POSTS_PER_PAGE)),
@@ -53,19 +51,21 @@ export class Blog {
     return this.filteredPosts().slice(start, start + POSTS_PER_PAGE);
   });
 
-  protected readonly hasFilters = computed(() => !!this.activeCategory() || !!this.search().trim());
+  /** Page buttons: up to 5 pages are shown in full, otherwise gaps collapse the middle. */
+  protected readonly pageButtons = computed<(number | 'gap')[]>(() => {
+    const current = this.currentPage();
+    const total = this.totalPages();
 
-  constructor() {
-    // Focus the search box when the header search button asked for it.
-    afterRenderEffect(() => {
-      if (!this.searchFocus.pending()) return;
-      this.searchInput().nativeElement.focus();
-      this.searchFocus.consume();
-    });
-  }
+    if (total <= 5) return Array.from({ length: total }, (_, i) => i + 1);
+    if (current <= 3) return [1, 2, 3, 4, 'gap', total];
+    if (current >= total - 2) return [1, 'gap', total - 3, total - 2, total - 1, total];
+    return [1, 'gap', current - 1, current, current + 1, 'gap', total];
+  });
+
+  protected readonly hasFilters = computed(() => !!this.category() || !!this.search().trim());
 
   protected selectCategory(category: string | null): void {
-    if (category !== this.activeCategory()) this.updateQuery({ category, page: null });
+    if (category !== this.category()) this.updateQuery({ category, page: null });
   }
 
   protected onSearchChange(term: string): void {
@@ -73,7 +73,8 @@ export class Blog {
     if (this.page()) this.updateQuery({ page: null }, true);
   }
 
-  protected onPageChange(page: number): void {
+  protected goToPage(page: number): void {
+    if (page < 1 || page > this.totalPages() || page === this.currentPage()) return;
     this.updateQuery({ page: page > 1 ? page : null });
     this.resultsTop().nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }

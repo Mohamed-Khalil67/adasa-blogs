@@ -51,14 +51,13 @@
 
       <!-- Desktop actions -->
       <div class="hidden items-center gap-3 md:flex">
-        <button
-          type="button"
+        <a
+          routerLink="/blog"
           aria-label="البحث في المقالات"
-          (click)="openSearch()"
           class="cursor-pointer rounded-xl border border-transparent p-3 text-neutral-500 transition-all duration-300 hover:border-line hover:bg-card hover:text-orange-500"
         >
           <i class="fa-solid fa-magnifying-glass block size-5 text-lg leading-5"></i>
-        </button>
+        </a>
         <a routerLink="/blog" class="btn-primary text-sm">ابدأ القراءة</a>
       </div>
 
@@ -84,7 +83,8 @@
       [attr.inert]="menuOpen() ? null : ''"
     >
       <div class="rounded-2xl border border-line bg-card p-4 backdrop-blur-xl">
-        <div class="flex flex-col space-y-1">
+        <!-- Any link in here navigates, so closing the menu on click covers them all. -->
+        <div class="flex flex-col space-y-1" (click)="menuOpen.set(false)">
           <a
             routerLink="/"
             routerLinkActive="border-orange-500/30 bg-orange-500/10 !text-orange-500 hover:bg-orange-500/10"
