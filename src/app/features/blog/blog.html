@@ -103,28 +103,6 @@
         {{ filteredPosts().length === 1 ? 'مقالة' : 'مقالات' }}
       </p>
       <div class="flex items-center gap-2">
-        <div class="flex items-center rounded-xl border border-line bg-card p-1" role="group" aria-label="طريقة العرض">
-          <button
-            type="button"
-            aria-label="عرض شبكي"
-            [attr.aria-pressed]="layout() === 'grid'"
-            (click)="layout.set('grid')"
-            class="cursor-pointer rounded-lg p-2 transition-all duration-300"
-            [class]="layout() === 'grid' ? 'bg-orange-500 text-white' : 'text-neutral-400 hover:text-white'"
-          >
-            <i class="fa-solid fa-table-cells-large block size-5 text-base leading-5"></i>
-          </button>
-          <button
-            type="button"
-            aria-label="عرض قائمة"
-            [attr.aria-pressed]="layout() === 'list'"
-            (click)="layout.set('list')"
-            class="cursor-pointer rounded-lg p-2 transition-all duration-300"
-            [class]="layout() === 'list' ? 'bg-orange-500 text-white' : 'text-neutral-400 hover:text-white'"
-          >
-            <i class="fa-solid fa-list block size-5 text-base leading-5"></i>
-          </button>
-        </div>
         @if (hasFilters()) {
           <button
             type="button"
@@ -139,9 +117,9 @@
     </div>
 
     @if (visiblePosts().length) {
-      <div [class]="layout() === 'grid' ? 'grid gap-8 md:grid-cols-2 lg:grid-cols-3' : 'flex flex-col gap-6'">
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         @for (post of visiblePosts(); track post.id) {
-          <app-post-card [post]="post" [layout]="layout()" />
+          <app-post-card [post]="post" />
         }
       </div>
 

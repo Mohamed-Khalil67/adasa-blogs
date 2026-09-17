@@ -24,7 +24,6 @@ export class Blog {
   protected readonly chipIdle = `${CHIP} border border-line bg-card text-neutral-400 hover:border-orange-500/30`;
 
   protected readonly search = signal('');
-  protected readonly layout = signal<'grid' | 'list'>('grid');
 
   /** Search matches the title and excerpt, like the original site. */
   protected readonly filteredPosts = computed(() => {

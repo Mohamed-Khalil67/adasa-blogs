@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-// The posts are loaded with a dynamic import so they stay out of the initial bundle.
+// Loaded on demand, so the article text stays out of the initial bundle.
 const loadPosts = () => import('./data/posts.json').then((module) => module.default);
 
 export const routes: Routes = [
@@ -16,10 +16,9 @@ export const routes: Routes = [
   },
   {
     path: 'blog/:slug',
+    title: 'مقال | عدسة',
     // Unknown slugs don't match this route, so they fall through to '**' (404).
     canMatch: [(_route, segments) => loadPosts().then((posts) => posts.some((post) => post.slug === segments[1]?.path))],
-    title: (route) =>
-      loadPosts().then((posts) => `${posts.find((post) => post.slug === route.paramMap.get('slug'))?.title} | عدسة`),
     loadComponent: () => import('./features/post-details/post-details').then((m) => m.PostDetails),
   },
   {

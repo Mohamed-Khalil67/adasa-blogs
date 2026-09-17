@@ -6,7 +6,7 @@ import { ArDatePipe } from '../ar-date.pipe';
 /** One entry of data/posts.json. */
 type Post = (typeof posts)[number];
 
-/** Post card in grid (vertical) or list (horizontal) layout. Used by the home page and the blog. */
+/** Post card, used by the home page and the blog. */
 @Component({
   selector: 'app-post-card',
   imports: [RouterLink, ArDatePipe],
@@ -14,5 +14,4 @@ type Post = (typeof posts)[number];
 })
 export class PostCard {
   readonly post = input.required<Post>();
-  readonly layout = input<'grid' | 'list'>('grid');
 }
