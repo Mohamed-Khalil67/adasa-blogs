@@ -1,5 +1,6 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
-import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
+import { Component, computed, input } from '@angular/core';
+import { Params, RouterLink } from '@angular/router';
+import { CATEGORIES } from '../../data/categories';
 import POSTS from '../../data/posts.json';
 import { PostCard } from '../../shared/post-card/post-card';
 
@@ -12,29 +13,17 @@ const CHIP = 'cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition
   templateUrl: './blog.html',
 })
 export class Blog {
-  /** `?category=` and `?page=`, bound through withComponentInputBinding(). */
+  /** The `/blog/category/:category` param and `?page=`, bound through withComponentInputBinding(). */
   readonly category = input<string>();
   readonly page = input<string>();
 
-  private readonly router = inject(Router);
-  private readonly route = inject(ActivatedRoute);
-
+  protected readonly categories = CATEGORIES;
   protected readonly chipActive = `${CHIP} bg-linear-to-r from-orange-500 to-orange-600 text-white`;
   protected readonly chipIdle = `${CHIP} border border-line bg-card text-neutral-400 hover:border-orange-500/30`;
 
-  protected readonly search = signal('');
-
-  /** Search matches the title and excerpt, like the original site. */
   protected readonly filteredPosts = computed(() => {
     const category = this.category();
-    const term = this.search().trim().toLowerCase();
-    return POSTS.filter(
-      (post) =>
-        (!category || post.category === category) &&
-        (!term ||
-          post.title.toLowerCase().includes(term) ||
-          post.excerpt.toLowerCase().includes(term)),
-    );
+    return category ? POSTS.filter((post) => post.category === category) : POSTS;
   });
 
   protected readonly totalPages = computed(() =>
@@ -65,11 +54,5 @@ export class Blog {
   /** Page one is the bare URL, so '?page=1' never shows up in a link. */
   protected pageParams(page: number): Params {
     return { page: page > 1 ? page : null };
-  }
-
-  /** Empties the search box and drops '?category=' and '?page=' from the URL. */
-  protected resetFilters(): void {
-    this.search.set('');
-    void this.router.navigate([], { relativeTo: this.route });
   }
 }

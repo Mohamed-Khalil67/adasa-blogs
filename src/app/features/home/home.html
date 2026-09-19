@@ -192,8 +192,7 @@
     <div class="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
       @for (category of categories; track category.name) {
         <a
-          routerLink="/blog"
-          [queryParams]="{ category: category.name }"
+          [routerLink]="['/blog/category', category.name]"
           class="group relative block overflow-hidden rounded-2xl border border-line bg-card p-6 transition-all duration-500 hover:-translate-y-1 hover:border-orange-500/30"
         >
           <div

@@ -15,7 +15,7 @@ export class App {
     inject(ViewportScroller).setOffset([0, 96]);
 
     // Smoothly scroll to the top when the path changes, but not when only the query
-    // params change (the blog's filters and pagination).
+    // params change (the blog's pagination).
     let previousPath = '';
     inject(Router).events.subscribe((event) => {
       if (!(event instanceof NavigationEnd)) return;

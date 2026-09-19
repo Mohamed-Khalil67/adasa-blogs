@@ -1,17 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CATEGORIES } from '../../data/categories';
 import POSTS from '../../data/posts.json';
 import { ArDatePipe } from '../../shared/ar-date.pipe';
 import { PostCard } from '../../shared/post-card/post-card';
-
-/** The site's fixed categories; the post count next to each one comes from the posts. */
-const CATEGORIES = [
-  { name: 'إضاءة', icon: 'fa-sun' },
-  { name: 'بورتريه', icon: 'fa-user' },
-  { name: 'مناظر طبيعية', icon: 'fa-mountain-sun' },
-  { name: 'تقنيات', icon: 'fa-sliders' },
-  { name: 'معدات', icon: 'fa-sun' },
-];
 
 @Component({
   selector: 'app-home',

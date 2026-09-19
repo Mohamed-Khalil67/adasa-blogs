@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { CATEGORIES } from './data/categories';
 import { PRIVACY_PAGE, TERMS_PAGE } from './features/legal/legal-page';
 import { Home } from './features/home/home';
 import { NotFound } from './features/not-found/not-found';
@@ -27,9 +28,17 @@ export const routes: Routes = [
         loadComponent: () => import('./features/blog/blog').then((m) => m.Blog),
       },
       {
+        // One route per category; unknown names fall through to '**' (404).
+        path: 'category/:category',
+        title: 'المدونة | عدسة',
+        canMatch: [
+          (_route, segments) => CATEGORIES.some((category) => category.name === segments[1]?.path),
+        ],
+        loadComponent: () => import('./features/blog/blog').then((m) => m.Blog),
+      },
+      {
         path: ':slug',
         title: 'مقال | عدسة',
-        // Unknown slugs don't match this route, so they fall through to '**' (404).
         canMatch: [
           (_route, segments) =>
             loadPosts().then((posts) => posts.some((post) => post.slug === segments[0]?.path)),
@@ -45,9 +54,7 @@ export const routes: Routes = [
     loadComponent: () => import('./features/about/about').then((m) => m.About),
   },
   {
-    // The legal pages share their hero, notice, section links and footnote, so they hang off one
-    // parent and render only their own sections into its outlet.
-    path: '',
+    path: 'legal',
     loadComponent: () => import('./features/legal/legal').then((m) => m.Legal),
     children: [
       {
