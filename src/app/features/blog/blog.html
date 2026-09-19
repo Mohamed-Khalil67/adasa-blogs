@@ -50,7 +50,7 @@
         <a
           routerLink="/blog"
           fragment="results"
-          routerLinkActive="tab-active !bg-primary !text-primary-content"
+          routerLinkActive="tab-active"
           [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' }"
           ariaCurrentWhenActive="page"
           class="tab"
@@ -61,7 +61,7 @@
           <a
             [routerLink]="['/blog/category', item.name]"
             fragment="results"
-            routerLinkActive="tab-active !bg-primary !text-primary-content"
+            routerLinkActive="tab-active"
             ariaCurrentWhenActive="page"
             class="tab"
           >
@@ -163,7 +163,7 @@
         </div>
         <h3 class="mb-3 text-2xl font-bold text-white">لا توجد مقالات</h3>
         <p class="mb-6 text-neutral-400">لا توجد مقالات في هذا التصنيف بعد.</p>
-        <a routerLink="/blog" class="btn-primary gap-2">
+        <a routerLink="/blog" class="btn-brand gap-2">
           <i class="fa-solid fa-rotate-left"></i>
           عرض جميع المقالات
         </a>

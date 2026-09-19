@@ -44,11 +44,11 @@ import { RouterLink } from '@angular/router';
         </p>
 
         <div class="mb-12 flex flex-col justify-center gap-4 sm:flex-row">
-          <a routerLink="/" class="btn-primary gap-2">
+          <a routerLink="/" class="btn-brand gap-2">
             <i class="fa-solid fa-house"></i>
             الذهاب للرئيسية
           </a>
-          <a routerLink="/blog" class="btn-secondary gap-2">
+          <a routerLink="/blog" class="btn-brand-outline gap-2">
             <i class="fa-solid fa-book-open"></i>
             تصفح المقالات
           </a>

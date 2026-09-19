@@ -18,38 +18,42 @@
       </a>
 
       <!-- Desktop links -->
-      <div class="hidden items-center md:flex">
-        <div class="flex items-center rounded-full border border-line bg-card p-1.5">
+      <ul class="menu menu-horizontal hidden gap-1 rounded-full border border-line bg-card p-1.5 text-neutral-400 md:flex">
+        <li>
           <a
             routerLink="/home"
-            routerLinkActive="bg-linear-to-r from-orange-500 to-orange-600 !text-white"
+            routerLinkActive="menu-active"
             ariaCurrentWhenActive="page"
-            class="rounded-full px-5 py-2.5 text-sm font-medium text-neutral-400 transition-all duration-300 hover:text-white"
+            class="rounded-full px-5 py-2.5 text-sm font-medium"
           >
             الرئيسية
           </a>
+        </li>
+        <li>
           <a
             routerLink="/blog"
-            routerLinkActive="bg-linear-to-r from-orange-500 to-orange-600 !text-white"
+            routerLinkActive="menu-active"
             ariaCurrentWhenActive="page"
-            class="rounded-full px-5 py-2.5 text-sm font-medium text-neutral-400 transition-all duration-300 hover:text-white"
+            class="rounded-full px-5 py-2.5 text-sm font-medium"
           >
             المدونة
           </a>
+        </li>
+        <li>
           <a
             routerLink="/about"
-            routerLinkActive="bg-linear-to-r from-orange-500 to-orange-600 !text-white"
+            routerLinkActive="menu-active"
             ariaCurrentWhenActive="page"
-            class="rounded-full px-5 py-2.5 text-sm font-medium text-neutral-400 transition-all duration-300 hover:text-white"
+            class="rounded-full px-5 py-2.5 text-sm font-medium"
           >
             من نحن
           </a>
-        </div>
-      </div>
+        </li>
+      </ul>
 
       <!-- Desktop actions -->
       <div class="hidden items-center gap-3 md:flex">
-        <a routerLink="/blog" class="btn-primary text-sm">ابدأ القراءة</a>
+        <a routerLink="/blog" class="btn-brand text-sm">ابدأ القراءة</a>
       </div>
 
 
@@ -80,7 +84,7 @@
           <li>
             <a
               routerLink="/home"
-              routerLinkActive="menu-active !text-primary"
+              routerLinkActive="menu-active"
               ariaCurrentWhenActive="page"
               class="px-4 py-3 text-sm font-medium"
             >
@@ -90,7 +94,7 @@
           <li>
             <a
               routerLink="/blog"
-              routerLinkActive="menu-active !text-primary"
+              routerLinkActive="menu-active"
               ariaCurrentWhenActive="page"
               class="px-4 py-3 text-sm font-medium"
             >
@@ -100,7 +104,7 @@
           <li>
             <a
               routerLink="/about"
-              routerLinkActive="menu-active !text-primary"
+              routerLinkActive="menu-active"
               ariaCurrentWhenActive="page"
               class="px-4 py-3 text-sm font-medium"
             >
@@ -108,7 +112,7 @@
             </a>
           </li>
           <li class="mt-2">
-            <a routerLink="/blog" class="btn-primary text-center text-sm">ابدأ القراءة</a>
+            <a routerLink="/blog" class="btn-brand text-center text-sm">ابدأ القراءة</a>
           </li>
         </ul>
       </div>
