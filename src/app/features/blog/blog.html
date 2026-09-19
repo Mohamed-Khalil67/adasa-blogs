@@ -16,12 +16,18 @@
       <h1 class="mb-6 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
         استكشف <span class="gradient-text">مقالاتنا</span>
       </h1>
-      <p class="mx-auto max-w-2xl text-xl text-neutral-400">اكتشف الدروس والرؤى وأفضل الممارسات للتطوير الحديث</p>
+      <p class="mx-auto max-w-2xl text-xl text-neutral-400">
+        اكتشف الدروس والرؤى وأفضل الممارسات للتطوير الحديث
+      </p>
     </div>
   </section>
 
-  <!-- Sticky toolbar: search + category chips -->
-  <div class="sticky top-20 z-40 border-b border-line bg-ink/90 backdrop-blur-xl">
+  <!-- Sticky toolbar: search + category chips. Also the "#results" anchor the pagination
+       links scroll back to, so the results start right below it. -->
+  <div
+    id="results"
+    class="sticky top-20 z-40 scroll-mt-24 border-b border-line bg-ink/90 backdrop-blur-xl"
+  >
     <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
       <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
         <div class="relative w-full md:w-80">
@@ -34,68 +40,81 @@
             placeholder="ابحث في المقالات..."
             class="input-dark py-3 pr-12"
             [value]="search()"
-            (input)="onSearchChange(searchInput.value)"
+            (input)="search.set(searchInput.value)"
           />
           <i
             class="fa-solid fa-magnifying-glass pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-lg text-neutral-500"
           ></i>
         </div>
 
-        <div class="flex flex-wrap justify-center gap-2" role="group" aria-label="تصفية حسب التصنيف">
-          <button
-            type="button"
+        <!-- Filter chips are links too: same '#results' anchor, so the toolbar stays put. -->
+        <nav aria-label="تصفية حسب التصنيف" class="flex flex-wrap justify-center gap-2">
+          <a
+            [routerLink]="[]"
+            [queryParams]="{ category: null, page: null }"
+            queryParamsHandling="merge"
+            fragment="results"
             [class]="!category() ? chipActive : chipIdle"
-            [attr.aria-pressed]="!category()"
-            (click)="selectCategory(null)"
+            [attr.aria-current]="!category() ? 'page' : null"
           >
             جميع المقالات
-          </button>
-          <button
-            type="button"
+          </a>
+          <a
+            [routerLink]="[]"
+            [queryParams]="{ category: 'إضاءة', page: null }"
+            queryParamsHandling="merge"
+            fragment="results"
             [class]="category() === 'إضاءة' ? chipActive : chipIdle"
-            [attr.aria-pressed]="category() === 'إضاءة'"
-            (click)="selectCategory('إضاءة')"
+            [attr.aria-current]="category() === 'إضاءة' ? 'page' : null"
           >
             إضاءة
-          </button>
-          <button
-            type="button"
+          </a>
+          <a
+            [routerLink]="[]"
+            [queryParams]="{ category: 'بورتريه', page: null }"
+            queryParamsHandling="merge"
+            fragment="results"
             [class]="category() === 'بورتريه' ? chipActive : chipIdle"
-            [attr.aria-pressed]="category() === 'بورتريه'"
-            (click)="selectCategory('بورتريه')"
+            [attr.aria-current]="category() === 'بورتريه' ? 'page' : null"
           >
             بورتريه
-          </button>
-          <button
-            type="button"
+          </a>
+          <a
+            [routerLink]="[]"
+            [queryParams]="{ category: 'مناظر طبيعية', page: null }"
+            queryParamsHandling="merge"
+            fragment="results"
             [class]="category() === 'مناظر طبيعية' ? chipActive : chipIdle"
-            [attr.aria-pressed]="category() === 'مناظر طبيعية'"
-            (click)="selectCategory('مناظر طبيعية')"
+            [attr.aria-current]="category() === 'مناظر طبيعية' ? 'page' : null"
           >
             مناظر طبيعية
-          </button>
-          <button
-            type="button"
+          </a>
+          <a
+            [routerLink]="[]"
+            [queryParams]="{ category: 'تقنيات', page: null }"
+            queryParamsHandling="merge"
+            fragment="results"
             [class]="category() === 'تقنيات' ? chipActive : chipIdle"
-            [attr.aria-pressed]="category() === 'تقنيات'"
-            (click)="selectCategory('تقنيات')"
+            [attr.aria-current]="category() === 'تقنيات' ? 'page' : null"
           >
             تقنيات
-          </button>
-          <button
-            type="button"
+          </a>
+          <a
+            [routerLink]="[]"
+            [queryParams]="{ category: 'معدات', page: null }"
+            queryParamsHandling="merge"
+            fragment="results"
             [class]="category() === 'معدات' ? chipActive : chipIdle"
-            [attr.aria-pressed]="category() === 'معدات'"
-            (click)="selectCategory('معدات')"
+            [attr.aria-current]="category() === 'معدات' ? 'page' : null"
           >
             معدات
-          </button>
-        </div>
+          </a>
+        </nav>
       </div>
     </div>
   </div>
 
-  <div #resultsTop class="mx-auto max-w-7xl scroll-mt-[146px] px-4 py-12 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <!-- Results bar -->
     <div class="mb-8 flex items-center justify-between">
       <p class="text-neutral-400" aria-live="polite">
@@ -103,7 +122,7 @@
         {{ filteredPosts().length === 1 ? 'مقالة' : 'مقالات' }}
       </p>
       <div class="flex items-center gap-2">
-        @if (hasFilters()) {
+        @if (category() || search()) {
           <button
             type="button"
             (click)="resetFilters()"
@@ -126,60 +145,69 @@
       @if (totalPages() > 1) {
         <nav aria-label="التنقل بين الصفحات">
           <div class="mt-12 flex items-center justify-center gap-2">
-            <button
-              type="button"
+            <!-- routerLink + fragment, so the router scrolls to the results itself. -->
+            <a
               aria-label="الصفحة السابقة"
-              [disabled]="currentPage() === 1"
-              (click)="goToPage(currentPage() - 1)"
+              [routerLink]="[]"
+              [queryParams]="pageParams(currentPage() - 1)"
+              queryParamsHandling="merge"
+              fragment="results"
+              [attr.aria-disabled]="currentPage() === 1 || null"
               class="rounded-xl border p-3 transition-all duration-300"
               [class]="
                 currentPage() === 1
-                  ? 'cursor-not-allowed border-line bg-ink text-neutral-600'
+                  ? 'pointer-events-none cursor-not-allowed border-line bg-ink text-neutral-600'
                   : 'border-line bg-card text-white hover:border-orange-500/50 hover:bg-elevated'
               "
             >
               <i class="fa-solid fa-chevron-right block size-5 leading-5"></i>
-            </button>
+            </a>
 
             <div class="flex items-center gap-1">
               @for (item of pageButtons(); track $index) {
                 @if (item === 'gap') {
                   <span class="px-2 text-neutral-500">...</span>
                 } @else {
-                  <button
-                    type="button"
-                    (click)="goToPage(item)"
+                  <a
+                    [routerLink]="[]"
+                    [queryParams]="pageParams(item)"
+                    queryParamsHandling="merge"
+                    fragment="results"
                     [attr.aria-current]="item === currentPage() ? 'page' : null"
-                    class="h-11 min-w-[44px] rounded-xl text-sm font-medium transition-all duration-300"
+                    class="flex h-11 min-w-[44px] items-center justify-center rounded-xl text-sm font-medium transition-all duration-300"
                     [class]="
                       item === currentPage()
-                        ? 'bg-linear-to-r from-orange-500 to-orange-600 text-white'
+                        ? 'pointer-events-none bg-linear-to-r from-orange-500 to-orange-600 text-white'
                         : 'border border-line bg-card text-neutral-400 hover:border-orange-500/50 hover:text-white'
                     "
                   >
                     {{ item }}
-                  </button>
+                  </a>
                 }
               }
             </div>
 
-            <button
-              type="button"
+            <a
               aria-label="الصفحة التالية"
-              [disabled]="currentPage() === totalPages()"
-              (click)="goToPage(currentPage() + 1)"
+              [routerLink]="[]"
+              [queryParams]="pageParams(currentPage() + 1)"
+              queryParamsHandling="merge"
+              fragment="results"
+              [attr.aria-disabled]="currentPage() === totalPages() || null"
               class="rounded-xl border p-3 transition-all duration-300"
               [class]="
                 currentPage() === totalPages()
-                  ? 'cursor-not-allowed border-line bg-ink text-neutral-600'
+                  ? 'pointer-events-none cursor-not-allowed border-line bg-ink text-neutral-600'
                   : 'border-line bg-card text-white hover:border-orange-500/50 hover:bg-elevated'
               "
             >
               <i class="fa-solid fa-chevron-left block size-5 leading-5"></i>
-            </button>
+            </a>
           </div>
 
-          <p class="mt-4 text-center text-sm text-neutral-500">صفحة {{ currentPage() }} من {{ totalPages() }}</p>
+          <p class="mt-4 text-center text-sm text-neutral-500">
+            صفحة {{ currentPage() }} من {{ totalPages() }}
+          </p>
         </nav>
       }
     } @else {

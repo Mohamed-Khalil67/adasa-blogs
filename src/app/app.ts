@@ -20,7 +20,9 @@ export class App {
     inject(Router).events.subscribe((event) => {
       if (!(event instanceof NavigationEnd)) return;
       const path = event.urlAfterRedirects.split(/[?#]/)[0];
-      if (path !== previousPath) window.scrollTo({ top: 0, behavior: 'smooth' });
+      const hasFragment = event.urlAfterRedirects.includes('#');
+      // Fragment navigations are scrolled to their anchor by the router, so leave them alone.
+      if (path !== previousPath && !hasFragment) window.scrollTo({ top: 0, behavior: 'smooth' });
       previousPath = path;
     });
   }

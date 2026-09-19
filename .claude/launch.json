@@ -4,8 +4,9 @@
     {
       "name": "adasa",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["ng", "serve", "--port", "4200"],
-      "port": 4200
+      "runtimeArgs": ["ng", "serve"],
+      "port": 4200,
+      "autoPort": true
     }
   ]
 }
