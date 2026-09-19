@@ -2,6 +2,42 @@
 /* Icons: imported into the base layer so Tailwind utilities always win over Font Awesome's defaults. */
 @import '@fortawesome/fontawesome-free/css/all.min.css' layer(base);
 
+/* daisyUI: only the components in use (a full include would clash with our own `card` utility). */
+@plugin 'daisyui' {
+  themes: false;
+  include: properties, dropdown, menu, tab, join, button;
+}
+
+/* One dark theme built from the design tokens below. */
+@plugin 'daisyui/theme' {
+  name: 'lens';
+  default: true;
+  prefersdark: true;
+  color-scheme: dark;
+  --color-base-100: #161616;
+  --color-base-200: #111111;
+  --color-base-300: #262626;
+  --color-base-content: #ffffff;
+  --color-primary: #f97316;
+  --color-primary-content: #ffffff;
+  --color-secondary: #ea580c;
+  --color-secondary-content: #ffffff;
+  --color-accent: #fbbf24;
+  --color-accent-content: #0a0a0a;
+  --color-neutral: #1a1a1a;
+  --color-neutral-content: #a3a3a3;
+  --color-info: #38bdf8;
+  --color-success: #4ade80;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --radius-selector: 0.75rem;
+  --radius-field: 0.75rem;
+  --radius-box: 1rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
 /* Tajawal font, served from public/fonts so the site works offline */
 @font-face {
   font-family: 'Tajawal';

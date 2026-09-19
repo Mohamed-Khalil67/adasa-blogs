@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { CATEGORIES } from './data/categories';
 import { PRIVACY_PAGE, TERMS_PAGE } from './features/legal/legal-page';
-import { Home } from './features/home/home';
 import { NotFound } from './features/not-found/not-found';
 
 // Loaded on demand, so the article text stays out of the initial bundle.
@@ -37,6 +36,7 @@ export const routes: Routes = [
         loadComponent: () => import('./features/blog/blog').then((m) => m.Blog),
       },
       {
+        // Unknown slugs fall through to '**' (404), so PostDetails can rely on the post existing.
         path: ':slug',
         title: 'مقال | عدسة',
         canMatch: [

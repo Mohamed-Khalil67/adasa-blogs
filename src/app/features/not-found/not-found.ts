@@ -61,7 +61,7 @@ import { RouterLink } from '@angular/router';
             <span class="text-neutral-600">•</span>
             <a routerLink="/about" class="font-medium text-orange-500 hover:text-orange-400 hover:underline">من نحن</a>
             <span class="text-neutral-600">•</span>
-            <a routerLink="/privacy" class="font-medium text-orange-500 hover:text-orange-400 hover:underline">الخصوصية</a>
+            <a routerLink="/legal/privacy" class="font-medium text-orange-500 hover:text-orange-400 hover:underline">الخصوصية</a>
           </div>
         </div>
       </div>

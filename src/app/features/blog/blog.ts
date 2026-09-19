@@ -1,15 +1,14 @@
 import { Component, computed, input } from '@angular/core';
-import { Params, RouterLink } from '@angular/router';
+import { Params, RouterLink, RouterLinkActive } from '@angular/router';
 import { CATEGORIES } from '../../data/categories';
 import POSTS from '../../data/posts.json';
 import { PostCard } from '../../shared/post-card/post-card';
 
 const POSTS_PER_PAGE = 6;
-const CHIP = 'cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition-all duration-300';
 
 @Component({
   selector: 'app-blog',
-  imports: [PostCard, RouterLink],
+  imports: [PostCard, RouterLink, RouterLinkActive],
   templateUrl: './blog.html',
 })
 export class Blog {
@@ -18,8 +17,6 @@ export class Blog {
   readonly page = input<string>();
 
   protected readonly categories = CATEGORIES;
-  protected readonly chipActive = `${CHIP} bg-linear-to-r from-orange-500 to-orange-600 text-white`;
-  protected readonly chipIdle = `${CHIP} border border-line bg-card text-neutral-400 hover:border-orange-500/30`;
 
   protected readonly filteredPosts = computed(() => {
     const category = this.category();

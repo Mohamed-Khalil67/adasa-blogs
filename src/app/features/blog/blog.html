@@ -46,12 +46,14 @@
         ></i>
       </div>
 
-      <nav aria-label="التصنيفات" class="flex flex-wrap justify-center gap-2">
+      <nav aria-label="التصنيفات" class="tabs tabs-box flex-wrap justify-center">
         <a
           routerLink="/blog"
           fragment="results"
-          [class]="!category() ? chipActive : chipIdle"
-          [attr.aria-current]="!category() ? 'page' : null"
+          routerLinkActive="tab-active !bg-primary !text-primary-content"
+          [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' }"
+          ariaCurrentWhenActive="page"
+          class="tab"
         >
           جميع المقالات
         </a>
@@ -59,8 +61,9 @@
           <a
             [routerLink]="['/blog/category', item.name]"
             fragment="results"
-            [class]="category() === item.name ? chipActive : chipIdle"
-            [attr.aria-current]="category() === item.name ? 'page' : null"
+            routerLinkActive="tab-active !bg-primary !text-primary-content"
+            ariaCurrentWhenActive="page"
+            class="tab"
           >
             {{ item.name }}
           </a>
@@ -97,7 +100,7 @@
 
       @if (totalPages() > 1) {
         <nav aria-label="التنقل بين الصفحات">
-          <div class="mt-12 flex items-center justify-center gap-2">
+          <div class="join mt-12 flex justify-center">
             <!-- routerLink + fragment, so the router scrolls to the results itself. -->
             <a
               aria-label="الصفحة السابقة"
@@ -106,39 +109,30 @@
               queryParamsHandling="merge"
               fragment="results"
               [attr.aria-disabled]="currentPage() === 1 || null"
-              class="rounded-xl border p-3 transition-all duration-300"
-              [class]="
-                currentPage() === 1
-                  ? 'pointer-events-none cursor-not-allowed border-line bg-ink text-neutral-600'
-                  : 'border-line bg-card text-white hover:border-orange-500/50 hover:bg-elevated'
-              "
+              [class.btn-disabled]="currentPage() === 1"
+              class="btn join-item"
             >
-              <i class="fa-solid fa-chevron-right block size-5 leading-5"></i>
+              <i class="fa-solid fa-chevron-right"></i>
             </a>
 
-            <div class="flex items-center gap-1">
-              @for (item of pageButtons(); track $index) {
-                @if (item === 'gap') {
-                  <span class="px-2 text-neutral-500">...</span>
-                } @else {
-                  <a
-                    [routerLink]="[]"
-                    [queryParams]="pageParams(item)"
-                    queryParamsHandling="merge"
-                    fragment="results"
-                    [attr.aria-current]="item === currentPage() ? 'page' : null"
-                    class="flex h-11 min-w-[44px] items-center justify-center rounded-xl text-sm font-medium transition-all duration-300"
-                    [class]="
-                      item === currentPage()
-                        ? 'pointer-events-none bg-linear-to-r from-orange-500 to-orange-600 text-white'
-                        : 'border border-line bg-card text-neutral-400 hover:border-orange-500/50 hover:text-white'
-                    "
-                  >
-                    {{ item }}
-                  </a>
-                }
+            @for (item of pageButtons(); track $index) {
+              @if (item === 'gap') {
+                <span class="btn btn-disabled join-item">...</span>
+              } @else {
+                <a
+                  [routerLink]="[]"
+                  [queryParams]="pageParams(item)"
+                  queryParamsHandling="merge"
+                  fragment="results"
+                  [attr.aria-current]="item === currentPage() ? 'page' : null"
+                  [class.btn-active]="item === currentPage()"
+                  [class.btn-primary]="item === currentPage()"
+                  class="btn join-item"
+                >
+                  {{ item }}
+                </a>
               }
-            </div>
+            }
 
             <a
               aria-label="الصفحة التالية"
@@ -147,14 +141,10 @@
               queryParamsHandling="merge"
               fragment="results"
               [attr.aria-disabled]="currentPage() === totalPages() || null"
-              class="rounded-xl border p-3 transition-all duration-300"
-              [class]="
-                currentPage() === totalPages()
-                  ? 'pointer-events-none cursor-not-allowed border-line bg-ink text-neutral-600'
-                  : 'border-line bg-card text-white hover:border-orange-500/50 hover:bg-elevated'
-              "
+              [class.btn-disabled]="currentPage() === totalPages()"
+              class="btn join-item"
             >
-              <i class="fa-solid fa-chevron-left block size-5 leading-5"></i>
+              <i class="fa-solid fa-chevron-left"></i>
             </a>
           </div>
 

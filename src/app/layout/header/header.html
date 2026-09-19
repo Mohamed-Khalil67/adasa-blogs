@@ -1,7 +1,6 @@
 <nav
   aria-label="التنقل الرئيسي"
   class="fixed top-0 right-0 left-0 z-50 border-b bg-card backdrop-blur-xl transition-all duration-500"
-  [class]="scrolled() ? 'border-line shadow-2xl shadow-black/40' : 'border-transparent'"
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-20 items-center justify-between">
@@ -22,9 +21,8 @@
       <div class="hidden items-center md:flex">
         <div class="flex items-center rounded-full border border-line bg-card p-1.5">
           <a
-            routerLink="/"
+            routerLink="/home"
             routerLinkActive="bg-linear-to-r from-orange-500 to-orange-600 !text-white"
-            [routerLinkActiveOptions]="{ exact: true }"
             ariaCurrentWhenActive="page"
             class="rounded-full px-5 py-2.5 text-sm font-medium text-neutral-400 transition-all duration-300 hover:text-white"
           >
@@ -54,57 +52,65 @@
         <a routerLink="/blog" class="btn-primary text-sm">ابدأ القراءة</a>
       </div>
 
-      <!-- Mobile menu toggle -->
-      <button
-        type="button"
-        class="cursor-pointer rounded-xl border border-transparent p-3 text-neutral-400 transition-all duration-300 hover:border-line hover:bg-card hover:text-white md:hidden"
-        [attr.aria-label]="menuOpen() ? 'إغلاق القائمة' : 'فتح القائمة'"
-        [attr.aria-expanded]="menuOpen()"
-        aria-controls="mobile-menu"
-        (click)="menuOpen.set(!menuOpen())"
-      >
-        <i class="fa-solid block size-6 text-xl leading-6" [class]="menuOpen() ? 'fa-xmark' : 'fa-bars'"></i>
-      </button>
-    </div>
 
-    <!-- Mobile menu: slides open via max-height -->
-    <div
-      id="mobile-menu"
-      class="overflow-hidden transition-all duration-300 md:hidden"
-      [class]="menuOpen() ? 'max-h-96 pb-4' : 'max-h-0'"
-      [attr.aria-hidden]="!menuOpen()"
-      [attr.inert]="menuOpen() ? null : ''"
-    >
-      <div class="rounded-2xl border border-line bg-card p-4 backdrop-blur-xl">
+      <!-- Mobile menu: native popover driven by daisyUI's dropdown, so it needs no component state.
+           The popover handles toggling, Esc, click-outside and aria-expanded on the button. -->
+      <div class="group md:hidden">
+        <button
+          type="button"
+          class="cursor-pointer rounded-xl border border-transparent p-3 text-neutral-400 transition-all duration-300 hover:border-line hover:bg-card hover:text-white"
+          aria-label="القائمة"
+          aria-controls="mobile-menu"
+          popovertarget="mobile-menu"
+          style="anchor-name: --mobile-menu"
+        >
+          <i class="fa-solid fa-bars block size-6 text-xl leading-6 group-has-[:popover-open]:hidden"></i>
+          <i class="fa-solid fa-xmark hidden size-6 text-xl leading-6 group-has-[:popover-open]:block"></i>
+        </button>
+
         <!-- Any link in here navigates, so closing the menu on click covers them all. -->
-        <div class="flex flex-col space-y-1" (click)="menuOpen.set(false)">
-          <a
-            routerLink="/"
-            routerLinkActive="border-orange-500/30 bg-orange-500/10 !text-orange-500 hover:bg-orange-500/10"
-            [routerLinkActiveOptions]="{ exact: true }"
-            ariaCurrentWhenActive="page"
-            class="rounded-xl border border-transparent px-4 py-3 text-sm font-medium text-neutral-400 transition-all duration-300 hover:bg-elevated hover:text-white"
-          >
-            الرئيسية
-          </a>
-          <a
-            routerLink="/blog"
-            routerLinkActive="border-orange-500/30 bg-orange-500/10 !text-orange-500 hover:bg-orange-500/10"
-            ariaCurrentWhenActive="page"
-            class="rounded-xl border border-transparent px-4 py-3 text-sm font-medium text-neutral-400 transition-all duration-300 hover:bg-elevated hover:text-white"
-          >
-            المدونة
-          </a>
-          <a
-            routerLink="/about"
-            routerLinkActive="border-orange-500/30 bg-orange-500/10 !text-orange-500 hover:bg-orange-500/10"
-            ariaCurrentWhenActive="page"
-            class="rounded-xl border border-transparent px-4 py-3 text-sm font-medium text-neutral-400 transition-all duration-300 hover:bg-elevated hover:text-white"
-          >
-            من نحن
-          </a>
-          <a routerLink="/blog" class="btn-primary mt-2 text-center text-sm">ابدأ القراءة</a>
-        </div>
+        <ul
+          #mobileMenu
+          id="mobile-menu"
+          popover
+          class="dropdown menu mt-2 w-64 gap-1 rounded-2xl border border-line bg-card p-3 shadow-2xl shadow-black/40"
+          style="position-anchor: --mobile-menu"
+          (click)="mobileMenu.hidePopover()"
+        >
+          <li>
+            <a
+              routerLink="/home"
+              routerLinkActive="menu-active !text-primary"
+              ariaCurrentWhenActive="page"
+              class="px-4 py-3 text-sm font-medium"
+            >
+              الرئيسية
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/blog"
+              routerLinkActive="menu-active !text-primary"
+              ariaCurrentWhenActive="page"
+              class="px-4 py-3 text-sm font-medium"
+            >
+              المدونة
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/about"
+              routerLinkActive="menu-active !text-primary"
+              ariaCurrentWhenActive="page"
+              class="px-4 py-3 text-sm font-medium"
+            >
+              من نحن
+            </a>
+          </li>
+          <li class="mt-2">
+            <a routerLink="/blog" class="btn-primary text-center text-sm">ابدأ القراءة</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
